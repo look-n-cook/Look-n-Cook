@@ -1,0 +1,14 @@
+.landing-search {
+  background-size: cover;
+  background: url('/images/landing-recipes.jpg') center;
+}
+
+.landing-recipes {
+  background-size: cover;
+  background: url('/images/landing-search.jpg') center;
+}
+
+.landing-vendor {
+  background-size: cover;
+  background: url('/images/landing-vendor.jpg') center;
+}
