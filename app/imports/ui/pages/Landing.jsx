@@ -11,9 +11,16 @@ class Landing extends React.Component {
   render() {
     const spacingStyle = { marginTop: '90px', marginBottom: '90px' };
     const titleStyle = { fontSize: '80px' };
+    const imageStyle = {
+      borderTopLeftRadius: '60px',
+      borderTopRightRadius: '60px',
+      height: '208px',
+      width: '1155px',
+    };
     const descriptionStyle = {
       backgroundColor: '#D6DFCC',
-      borderRadius: '60px',
+      borderBottomLeftRadius: '60px',
+      borderBottomRightRadius: '60px',
       color: 'white',
       height: '208px',
       width: '1155px',
@@ -28,16 +35,7 @@ class Landing extends React.Component {
 
           <div style={spacingStyle}/>
 
-          <Grid.Row>
-            <Grid.Column width={4}>
-              <Image size='small' circular src="/images/meteor-logo.png"/>
-            </Grid.Column>
-
-            <Grid.Column width={8}>
-              <h1>Welcome to this template</h1>
-              <p>Now get to work and modify this app!</p>
-            </Grid.Column>
-          </Grid.Row>
+          <div style={imageStyle} className='landing-search'/>
 
           <Grid.Row style={descriptionStyle}>
             <Grid.Column width={4}>
@@ -46,23 +44,14 @@ class Landing extends React.Component {
 
             <Grid.Column width={10}>
               <h1>Share your favorite recipes with the community</h1>
-              <h5>Write down your recipes for others to follow. In addition to the usual preparation and a picture,
-                add information on where to buy the ingredients and how much they cost.</h5>
+              <h4>Write down your recipes for others to follow. In addition to the usual preparation and a picture,
+                add information on where to buy the ingredients and how much they cost.</h4>
             </Grid.Column>
           </Grid.Row>
 
           <div style={spacingStyle}/>
 
-          <Grid.Row>
-            <Grid.Column width={4}>
-              <Image size='small' circular src="/images/meteor-logo.png"/>
-            </Grid.Column>
-
-            <Grid.Column width={8}>
-              <h1>Welcome to this template</h1>
-              <p>Now get to work and modify this app!</p>
-            </Grid.Column>
-          </Grid.Row>
+          <div style={imageStyle} className='landing-recipes'/>
 
           <Grid.Row style={descriptionStyle}>
             <Grid.Column width={4}>
@@ -71,36 +60,25 @@ class Landing extends React.Component {
 
             <Grid.Column width={10}>
               <h1>Search for new recipes</h1>
-              <h5>Search for recipes that give your favorite food a new twist, fall under your own dietary needs
-                (vegan, gluten-free, etc.), or just something interesting to cook up for dinner!</h5>
+              <h4>Search for recipes that give your favorite food a new twist, fall under your own dietary needs
+                (vegan, gluten-free, etc.), or just something interesting to cook up for dinner!</h4>
             </Grid.Column>
           </Grid.Row>
 
           <div style={spacingStyle}/>
 
-          <Grid.Row>
-            <Grid.Column width={4}>
-              <Image size='small' circular src="/images/meteor-logo.png"/>
-            </Grid.Column>
-
-            <Grid.Column width={8}>
-              <h1>Welcome to this template</h1>
-              <p>Now get to work and modify this app!</p>
-            </Grid.Column>
-          </Grid.Row>
+          <div style={imageStyle} className='landing-vendor'/>
 
           <Grid.Row style={descriptionStyle}>
             <Grid.Column width={4}>
               <Icon name='users' size='massive'/>
             </Grid.Column>
 
-            <div style={spacingStyle}/>
-
             <Grid.Column width={10}>
               <h1>Vendors can list their ingredients</h1>
-              <p>Local grocery stores and farmer’s markets can provide their location and hours.
+              <h4>Local grocery stores and farmer’s markets can provide their location and hours.
                 For each ingredient defined in the system, they can indicate their stock,
-                how much it costs to buy the item, the size of the item.</p>
+                how much it costs to buy the item, the size of the item.</h4>
             </Grid.Column>
           </Grid.Row>
 
