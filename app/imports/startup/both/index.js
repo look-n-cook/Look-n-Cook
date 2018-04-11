@@ -1,1 +1,2 @@
-import '/imports/api/stuff';
+import '/imports/api/ingredient';
+import '/imports/api/recipe';
