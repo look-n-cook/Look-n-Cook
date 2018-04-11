@@ -1,14 +1,14 @@
 .landing-search {
   background-size: cover;
-  background: url('/images/landing-recipes.jpg') center;
+  background: url('/images/landing-recipes.jpg') no-repeat center;
 }
 
 .landing-recipes {
   background-size: cover;
-  background: url('/images/landing-search.jpg') center;
+  background: url('/images/landing-search.jpg') no-repeat center;
 }
 
 .landing-vendor {
   background-size: cover;
-  background: url('/images/landing-vendor.jpg') center;
+  background: url('/images/landing-vendor.jpg') no-repeat center;
 }
