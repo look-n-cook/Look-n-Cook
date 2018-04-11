@@ -24,9 +24,11 @@ class NavBar extends React.Component {
             <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
           </Menu.Item>
 
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
-          ) : ''}
+          {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Recipes</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Ingredients</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Vendors</Menu.Item>
+          ]) : ''}
 
           {this.props.currentUser ? ([
                 <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/list" key='list'>
