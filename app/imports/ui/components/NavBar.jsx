@@ -14,52 +14,61 @@ import { Roles } from 'meteor/alanning:roles';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
+    const imageStyle = {
+      margin: '0',
+      height: '75px',
+      width: '100%',
+    };
     const menuStyle = {
+      marginTop: '0',
       marginBottom: '10px',
       background: '#ACC198',
     };
     return (
-        <Menu style={menuStyle} attached="top" borderless inverted>
-          <Menu.Item as={NavLink} activeClassName="" exact to="/">
-            <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
-          </Menu.Item>
+        <div>
+          <div style={imageStyle} className='navbar-image'/>
+          <Menu style={menuStyle} attached="top" borderless inverted>
+            <Menu.Item as={NavLink} activeClassName="" exact to="/">
+              <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+            </Menu.Item>
 
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Recipes</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Ingredients</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Vendors</Menu.Item>
-          ]) : ''}
+            {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Recipes</Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Ingredients</Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Vendors</Menu.Item>,
+            ]) : ''}
 
-          {this.props.currentUser ? ([
-                <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/add" key='add'>
-                  Add Recipe
-                </Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/search/" key='search'>
-                  <Icon name='search' size='large'/>
-                </Menu.Item>,]
-          ) : ''}
+            {this.props.currentUser ? ([
+                  <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/add" key='add'>
+                    Add Recipe
+                  </Menu.Item>,
+                  <Menu.Item as={NavLink} activeClassName="active" exact to="/search/" key='search'>
+                    <Icon name='search' size='large'/>
+                  </Menu.Item>,
+            ]) : ''}
 
-          {this.props.currentUser === '' ? (
-              <Menu.Item position="right">
-                <Dropdown text="Login" pointing="top right" icon={'user'}>
-                  <Dropdown.Menu>
-                    <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
-                    <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Menu.Item>
-          ) : (
-              <Menu.Item>
-                <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
-                  <Dropdown.Menu>
-                    <Dropdown.Item icon="id card outline" text="Profile" as={NavLink} exact to="/profile"/>
-                    <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Menu.Item>
+            {this.props.currentUser === '' ? (
+                <Menu.Item position="right">
+                  <Dropdown text="Login" pointing="top right" icon={'user'}>
+                    <Dropdown.Menu>
+                      <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
+                      <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Menu.Item>
+            ) : (
+                <Menu.Item>
+                  <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
+                    <Dropdown.Menu>
+                      <Dropdown.Item icon="id card outline" text="Profile" as={NavLink} exact to="/profile"/>
+                      <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Menu.Item>
 
-          )}
-        </Menu>
+            )}
+          </Menu>
+        </div>
     );
   }
 }

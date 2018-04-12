@@ -1,3 +1,8 @@
+.navbar-image {
+  background-size: cover;
+  background: url('/images/navbar-image.jpg') no-repeat center;
+}
+
 .landing-search {
   background-size: cover;
   background: url('/images/landing-recipes.jpg') no-repeat center;
