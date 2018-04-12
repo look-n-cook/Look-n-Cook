@@ -1,0 +1,23 @@
+import React from 'react';
+import { Table } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+
+/** Renders a single row in the List Stuff (Admin) table. See pages/ListStuffAdmin.jsx. */
+class RecipeItemAdmin extends React.Component {
+  render() {
+    return (
+        <Table.Row>
+          <Table.Cell>{this.props.recipe.name}</Table.Cell>
+          <Table.Cell>{this.props.recipe.owner}</Table.Cell>
+          <Table.Cell>{this.props.recipe.createdAt.toLocaleDateString('en-US')}</Table.Cell>
+        </Table.Row>
+    );
+  }
+}
+
+/** Require a document to be passed to this component. */
+RecipeItemAdmin.propTypes = {
+  recipe: PropTypes.object.isRequired,
+};
+
+export default RecipeItemAdmin;
