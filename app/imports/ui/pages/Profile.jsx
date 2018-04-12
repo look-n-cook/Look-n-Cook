@@ -2,7 +2,6 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { Recipes } from '/imports/api/recipe/recipe';
-import { Ingredients } from '/imports/api/ingredient/ingredient';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Recipe from '/imports/ui/components/Recipes';
@@ -20,7 +19,7 @@ class Profile extends React.Component {
       <Container>
         <Header as="h2" textAlign="center" inverted>Profile Page</Header>
         <Card.Group>
-          {this.props.recipes.map((recipe, index) => <Recipe key={index} recipe={recipe} notes={this.props.ingredients.filter(note => (note.contactId === recipe._id))}/>)}
+          {this.props.recipes.map((recipe, index) => <Recipe key={index} recipe={recipe} />)}
         </Card.Group>
       </Container>
     );
@@ -30,7 +29,6 @@ class Profile extends React.Component {
 /** Require an array of Stuff documents in the props. */
 Profile.propTypes = {
   recipes: PropTypes.array.isRequired,
-  ingredients: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -38,10 +36,8 @@ Profile.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Recipes');
-  const subscription2 = Meteor.subscribe('Ingredients');
   return {
-    contacts: Recipes.find({}).fetch(),
-    notes: Ingredients.find({}).fetch(),
-    ready: (subscription.ready() && subscription2.ready()),
+    recipes: Recipes.find({}).fetch(),
+    ready: (subscription.ready()),
   };
 })(Profile);

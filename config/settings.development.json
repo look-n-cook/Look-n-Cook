@@ -17,8 +17,7 @@
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
       "ingredients": "Javascript",
       "steps": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com.",
-      "owner": "john@foo.com",
-      "createdAt": "4/11/2018"
+      "owner": "john@foo.com"
     }
   ]
 }

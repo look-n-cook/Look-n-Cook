@@ -1,11 +1,9 @@
 import React from 'react';
-import { Card, Image, Feed, Button } from 'semantic-ui-react';
+import { Card, Image, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
-import AddIngredient from '/imports/ui/components/AddIngredient';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Recipes } from '/imports/api/recipe/recipe';
-import Ingredient from '/imports/ui/components/Ingredients';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Recipe extends React.Component {
@@ -55,14 +53,6 @@ class Recipe extends React.Component {
           </Card.Content>
         </Card.Content>
         <Card.Content extra>
-          <Feed>
-            {this.props.ingredients.map((ingredient, index) => <Ingredient key={index} ingredient={ingredient}/>)}
-          </Feed>
-        </Card.Content>
-        <Card.Content extra>
-          <AddIngredient owner={this.props.recipe.owner} recipeId={this.props.recipe._id}/>
-        </Card.Content>
-        <Card.Content extra>
           <Button basic onClick={this.onClick}>Delete</Button>
         </Card.Content>
       </Card>
@@ -73,7 +63,6 @@ class Recipe extends React.Component {
 /** Require a document to be passed to this component. */
 Recipe.propTypes = {
   recipe: PropTypes.object.isRequired,
-  ingredients: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

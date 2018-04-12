@@ -48,8 +48,9 @@ class AddRecipe extends React.Component {
             <Segment>
               <TextField name='name'/>
               <TextField name='image'/>
-              <TextField name='createdAt'/>
+              <TextField name='ingredients'/>
               <LongTextField name='steps'/>
+              <HiddenField name='createdAt' value={new Date()}/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
               <HiddenField name='owner' value='fakeuser@foo.com'/>

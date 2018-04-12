@@ -4,7 +4,7 @@ import { Recipes } from '../../api/recipe/recipe.js';
 
 /** Initialize the database with a default data document. */
 function addData(data) {
-  console.log(`  Adding: ${data.lastName} (${data.owner})`);
+  console.log(`  Adding: ${data.name} (${data.owner})`);
   Recipes.insert(data);
 }
 
@@ -17,7 +17,7 @@ if (Recipes.find().count() === 0) {
 }
 
 /** This subscription publishes only the documents associated with the logged in user */
-Meteor.publish('Contacts', function publish() {
+Meteor.publish('Recipes', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Recipes.find({ owner: username });

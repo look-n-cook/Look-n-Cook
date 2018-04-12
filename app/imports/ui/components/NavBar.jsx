@@ -34,7 +34,7 @@ class NavBar extends React.Component {
                 </Menu.Item>,
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/search/" key='search'>
                   <Icon name='search' size='large'/>
-                </Menu.Item>,]
+                </Menu.Item>]
           ) : ''}
 
           {this.props.currentUser === '' ? (

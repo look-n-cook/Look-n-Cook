@@ -1,7 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
-import { Ingredients } from '/imports/api/ingredient/ingredient';
 
 /** Create a Meteor collection. */
 const Recipes = new Mongo.Collection('Recipes');
@@ -10,7 +9,7 @@ const Recipes = new Mongo.Collection('Recipes');
 const RecipeSchema = new SimpleSchema({
   name: String,
   image: String,
-  ingredients: Ingredients,
+  ingredients: String,
   steps: String,
   owner: String,
   createdAt: Date,
