@@ -8,32 +8,11 @@ import {
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
-    const spacingStyle = { marginTop: '90px', marginBottom: '90px' };
-    const titleTop = {
-      backgroundColor: '#D6DFCC',
-      borderTopLeftRadius: '60px',
-      borderTopRightRadius: '60px',
-      height: '60px',
-      width: '1155px',
-    };
-    const titleStyle = {
-      margin: '0',
-      backgroundColor: '#D6DFCC',
-      fontSize: '80px',
-      color: 'white',
-      width: '1155px',
-    };
-    const titleBottom = {
-      backgroundColor: '#D6DFCC',
-      borderBottomLeftRadius: '60px',
-      borderBottomRightRadius: '60px',
-      height: '60px',
-      width: '1155px',
-    };
+    const spacingStyle = { marginTop: '60px' };
     const imageStyle = {
       borderTopLeftRadius: '60px',
       borderTopRightRadius: '60px',
-      height: '208px',
+      height: '160px',
       width: '1155px',
     };
     const descriptionStyle = {
@@ -41,24 +20,14 @@ class Landing extends React.Component {
       borderBottomLeftRadius: '60px',
       borderBottomRightRadius: '60px',
       color: 'white',
-      height: '208px',
+      height: '160px',
       width: '1155px',
     };
     return (
         <Grid verticalAlign='middle' textAlign='center' container>
           <div style={spacingStyle}/>
 
-          <Grid.Row>
-            <div style={titleTop}>
-            </div>
-              <Header as='h1' style={titleStyle}>{"Look 'n' Cook"}</Header>
-            <div style={titleBottom}>
-            </div>
-          </Grid.Row>
-
-          <div style={spacingStyle}></div>
-
-          <div style={imageStyle} className='landing-search'/>
+          <div style={imageStyle} className='landing-recipes'/>
 
           <Grid.Row style={descriptionStyle}>
             <Grid.Column width={4}>
@@ -74,7 +43,7 @@ class Landing extends React.Component {
 
           <div style={spacingStyle}/>
 
-          <div style={imageStyle} className='landing-recipes'/>
+          <div style={imageStyle} className='landing-search'/>
 
           <Grid.Row style={descriptionStyle}>
             <Grid.Column width={4}>

@@ -3,15 +3,16 @@
   background: url('/images/navbar-image.jpg') no-repeat center;
 }
 
-.landing-search {
+.landing-recipes {
   background-size: cover;
   background: url('/images/landing-recipes.jpg') no-repeat center;
 }
 
-.landing-recipes {
+.landing-search {
   background-size: cover;
   background: url('/images/landing-search.jpg') no-repeat center;
 }
+
 
 .landing-vendor {
   background-size: cover;
