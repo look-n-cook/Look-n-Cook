@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import {withRouter, Link, NavLink} from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Recipes } from '/imports/api/recipe/recipe';
 
@@ -37,29 +37,28 @@ class Recipe extends React.Component {
     return (
       <Card centered>
         <Card.Content>
-          <Image floated='right' size='mini' src={this.props.recipe.image} />
           <Card.Header>
             {this.props.recipe.name}
           </Card.Header>
-          <Card.Description>
-            <Card.Meta>
-              Ingredients
-            </Card.Meta>
-            {this.props.recipe.ingredients}
-          </Card.Description>
-          <Card.Description>
-            <Card.Meta>
-              Steps
-            </Card.Meta>
-            {this.props.recipe.steps}
-          </Card.Description>
+          <div style={ { marginTop: '10px' } }>
+            <Image floated='center' height='350px' width='300px' src={this.props.recipe.image} />
+          </div>
+
+            <Card.Description>
+              <div style={ { marginTop: '375px', marginBottom: '20px' } }>
+              {this.props.recipe.description}
+              </div>
+            </Card.Description>
+
+          <Card.Meta>
+            Added on
+          </Card.Meta>
           <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')} />
-          <Card.Content extra>
-            <Link to={`/edit/${this.props.recipe._id}`}>Edit</Link>
-          </Card.Content>
         </Card.Content>
         <Card.Content extra>
           <Button basic onClick={this.onClick}>Delete</Button>
+          <Button basic as={NavLink} exact to="/recipe"> Recipe </Button>
+          <Button basic as={NavLink} exact to="/edit"> Edit </Button>
         </Card.Content>
       </Card>
     );

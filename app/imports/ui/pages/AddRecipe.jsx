@@ -17,6 +17,7 @@ class AddRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
+    this.submit1 = this.submit1.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
     this.formRef = null;
   }
@@ -33,9 +34,14 @@ class AddRecipe extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image, ingredients, steps, createdAt } = data;
+    const { name, image, steps, description } = data;
     const owner = Meteor.user().username;
-    Recipes.insert({ name, image, ingredients, steps, createdAt, owner }, this.insertCallback);
+    Recipes.insert({ name, image, steps, description, owner }, this.insertCallback);
+  }
+  submit1(ingredient) {
+    const { ingredients } = ingredient;
+    const owner = Meteor.user().username;
+    Recipes.insert({ ingredients, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -48,7 +54,9 @@ class AddRecipe extends React.Component {
             <Segment>
               <TextField name='name'/>
               <TextField name='image'/>
+              <TextField name='description'/>
               <TextField name='ingredients'/>
+              <SubmitField value='Add'/>
               <LongTextField name='steps'/>
               <HiddenField name='createdAt' value={new Date()}/>
               <SubmitField value='Submit'/>
