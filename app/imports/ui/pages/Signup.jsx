@@ -36,6 +36,12 @@ export default class Signup extends React.Component {
 
   /** Display the signup form. */
   render() {
+    const formStyle = {
+      background: '#D7E0CD',
+    };
+    const buttonStyle = {
+      background: '#ACC198',
+    };
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -44,7 +50,7 @@ export default class Signup extends React.Component {
                 Register your account
               </Header>
               <Form onSubmit={this.handleSubmit}>
-                <Segment stacked>
+                <Segment style={formStyle} stacked>
                   <Form.Input
                       label="Email"
                       icon="user"
@@ -63,10 +69,10 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Submit"/>
+                  <Form.Button style={buttonStyle} content="Submit"/>
                 </Segment>
               </Form>
-              <Message>
+              <Message style={formStyle}>
                 Already have an account? Login <Link to="/signin">here</Link>
               </Message>
               {this.state.error === '' ? (
