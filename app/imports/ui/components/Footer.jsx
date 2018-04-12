@@ -15,6 +15,9 @@ class Footer extends React.Component {
       paddingTop: '15px',
       background: '#ACC198',
     };
+    const linkStyle = {
+      color: 'black',
+    };
     return (
         <footer style={footerStyle}>
           <div style={divStyle}>
@@ -26,13 +29,13 @@ class Footer extends React.Component {
               <br />
               <Grid verticalAlign='middle' textAlign='center'>
                 <Grid.Column width={2}>
-                  <a href="https://look-n-cook.github.io/">
+                  <a style={linkStyle} href="https://look-n-cook.github.io/">
                     <Icon name='file text'/>
                     Documentation
                   </a>
                 </Grid.Column>
                 <Grid.Column width={2}>
-                  <a href="https://github.com/look-n-cook/Look-n-Cook">
+                  <a style={linkStyle} href="https://github.com/look-n-cook/Look-n-Cook">
                     <Icon name='github'/>
                     GitHub
                   </a>
