@@ -42,9 +42,15 @@ class Recipe extends React.Component {
             {this.props.recipe.name}
           </Card.Header>
           <Card.Description>
+            <Card.Meta>
+              Ingredients
+            </Card.Meta>
             {this.props.recipe.ingredients}
           </Card.Description>
           <Card.Description>
+            <Card.Meta>
+              Steps
+            </Card.Meta>
             {this.props.recipe.steps}
           </Card.Description>
           <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')} />
