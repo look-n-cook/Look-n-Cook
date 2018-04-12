@@ -40,7 +40,6 @@ class Footer extends React.Component {
               University of Hawaii<br />
               Honolulu, HI 96822<br />
               <br />
-<<<<<<< HEAD
               <Grid verticalAlign='middle' textAlign='center'>
                 <Grid.Column width={2}>
                   <a style={linkStyle} href="https://look-n-cook.github.io/">
@@ -56,8 +55,6 @@ class Footer extends React.Component {
                 </Grid.Column>
               </Grid>
               <br />
-=======
->>>>>>> parent of 2ffb0c9... Added Icon to documentation link and change position.
             </div>
           </div>
         </footer>
