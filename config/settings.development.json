@@ -11,7 +11,7 @@
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
 
-  "defaultRecipes": [
+  "defaultRecipess": [
     {
       "name": "Acai Smoothie Bowl",
       "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
