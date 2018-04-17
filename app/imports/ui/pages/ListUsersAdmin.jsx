@@ -19,7 +19,7 @@ class ListRecipesAdmin extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Recipes</Header>
+          <Header as="h2" textAlign="center">List Users</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
