@@ -18,7 +18,34 @@
       "description": "Acai bowls make a great breakfast and giving you two of your five a day",
       "ingredients": "Stuff",
       "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/15/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/15/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
       "createdAt": "4/11/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/13/2018",
       "owner": "john@foo.com"
     },
     {
@@ -38,6 +65,69 @@
       "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
       "createdAt": "4/11/2018",
       "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/12/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/11/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/11/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/11/2018",
+      "owner": "john@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/12/2018",
+      "owner": "admin@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/11/2018",
+      "owner": "admin@foo.com"
+    },
+    {
+      "name": "Acai Smoothie Bowl",
+      "image": "https://pumpsandiron.com/wp-content/uploads/2015/07/acai-smoothie-bowl-recipe-5.jpg",
+      "description": "Acai bowls make a great breakfast and giving you two of your five a day",
+      "ingredients": "Stuff",
+      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "createdAt": "4/11/2018",
+      "owner": "admin@foo.com"
     }
   ]
 }

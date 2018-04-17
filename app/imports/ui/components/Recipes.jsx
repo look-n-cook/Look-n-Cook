@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import {withRouter, Link, NavLink} from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Recipes } from '/imports/api/recipe/recipe';
 
@@ -34,8 +34,11 @@ class Recipe extends React.Component {
 
 
   render() {
+    const cardStyle = {
+      background: '#F3E2C4',
+    };
     return (
-      <Card centered>
+      <Card centered style={cardStyle}>
         <Card.Content>
           <Card.Header>
             {this.props.recipe.name}

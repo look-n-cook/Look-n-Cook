@@ -26,6 +26,11 @@ Meteor.publish('Recipes', function publish() {
 });
 
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+Meteor.publish('Home', function publish() {
+    return Recipes.find();
+});
+
+/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 Meteor.publish('Admin', function publish() {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
     return Recipes.find();
