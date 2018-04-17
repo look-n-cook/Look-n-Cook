@@ -27,17 +27,18 @@ if (Meteor.users.find().count() === 0) {
 }
 
 Meteor.publish('AccountsAdmin', function () {
+  const self = this;
   const handle = Meteor.users.find({}, {
     fields: { emails: 1, profile: 1 },
   }).observeChanges({
     added: function (id, fields) {
-      this.added('Accounts', id, fields);
+      self.added('Accounts', id, fields);
     },
     changed: function (id, fields) {
-      this.changed('Accounts', id, fields);
+      self.changed('Accounts', id, fields);
     },
     removed: function (id) {
-      this.removed('Accounts', id);
+      self.removed('Accounts', id);
     },
   });
 
