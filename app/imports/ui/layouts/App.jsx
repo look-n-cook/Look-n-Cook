@@ -20,6 +20,7 @@ import ListRecipesAdmin from '../pages/ListRecipesAdmin';
 import ListUsersAdmin from '../pages/ListUsersAdmin';
 import ListVendorsAdmin from '../pages/ListVendorsAdmin';
 import ListIngredientsAdmin from '../pages/ListIngredientsAdmin';
+import Search from '../pages/Search';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+              <ProtectedRoute path="/search" component={Search}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/admin-recipes" component={ListRecipesAdmin}/>
               <AdminProtectedRoute path="/admin-users" component={ListUsersAdmin}/>
