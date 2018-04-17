@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 class RecipeItemAdmin extends React.Component {
   render() {
     const recipeOwners = _.map(this.props.recipes, (recipe) => recipe.owner);
-    const count = _.countBy(recipeOwners, (username) => username);
     return (
         <Table.Row>
-          <Table.Cell>{this.props.user}</Table.Cell>
-          <Table.Cell>{count[this.props.user]}</Table.Cell>
+          <Table.Cell>{this.props.user.emails['0'].address}</Table.Cell>
+          <Table.Cell>{
+            (_.filter(recipeOwners, (owner) => owner === this.props.user.emails['0'].address)).length
+          }</Table.Cell>
         </Table.Row>
     );
   }
@@ -18,7 +19,7 @@ class RecipeItemAdmin extends React.Component {
 
 /** Require a document to be passed to this component. */
 RecipeItemAdmin.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   recipes: PropTypes.array.isRequired,
 };
 

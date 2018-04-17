@@ -25,3 +25,26 @@ if (Meteor.users.find().count() === 0) {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
 }
+
+Meteor.publish('AccountsAdmin', function () {
+  const handle = Meteor.users.find({}, {
+    fields: { emails: 1, profile: 1 },
+  }).observeChanges({
+    added: function (id, fields) {
+      this.added('Accounts', id, fields);
+    },
+    changed: function (id, fields) {
+      this.changed('Accounts', id, fields);
+    },
+    removed: function (id) {
+      this.removed('Accounts', id);
+    },
+  });
+
+  this.ready();
+
+  this.onStop(function () {
+    handle.stop();
+  });
+
+});
