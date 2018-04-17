@@ -10,7 +10,6 @@ class StuffItemAdmin extends React.Component {
           <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
           <Table.Cell></Table.Cell>
-          <Table.Cell></Table.Cell>
         </Table.Row>
     );
   }
