@@ -28,9 +28,15 @@ class NavBar extends React.Component {
       <div>
         <div style={imageStyle} className='navbar-image'/>
         <Menu style={menuStyle} attached="top" borderless inverted>
-          <Menu.Item as={NavLink} activeClassName="" exact to="/">
-            <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
-          </Menu.Item>
+          {this.props.currentUser === '' ? (
+              <Menu.Item as={NavLink} activeClassName="" exact to="/">
+                <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+              </Menu.Item>
+          ) : (
+              <Menu.Item as={NavLink} activeClassName="" exact to="/home">
+                <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+              </Menu.Item>
+          )}
 
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
             <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-recipes" key='admin-recipes'>
