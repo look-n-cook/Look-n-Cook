@@ -18,6 +18,7 @@ import Signout from '../pages/Signout';
 import Separator from '../components/Separator';
 import ListRecipesAdmin from '../pages/ListRecipesAdmin';
 import ListUsersAdmin from '../pages/ListUsersAdmin';
+import ListVendorsAdmin from '../pages/ListVendorsAdmin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/admin-recipes" component={ListRecipesAdmin}/>
               <AdminProtectedRoute path="/admin-users" component={ListUsersAdmin}/>
+              <AdminProtectedRoute path="/admin-vendors" component={ListVendorsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
