@@ -32,8 +32,8 @@ class AddIngredient extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, owner, recipeId } = data;
-    Ingredients.insert({ name, owner, recipeId }, this.insertCallback);
+    const { name, recipeId } = data;
+    Ingredients.insert({ name, recipeId }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -44,7 +44,6 @@ class AddIngredient extends React.Component {
           <TextField label="Add an ingredient" name='name'/>
           <SubmitField value='Add'/>
           <ErrorsField/>
-          <HiddenField name='owner' value={this.props.owner}/>
           <HiddenField name='recipeId' value={this.props.recipeId}/>
         </Segment>
       </AutoForm>
@@ -53,7 +52,6 @@ class AddIngredient extends React.Component {
 }
 
 AddIngredient.propTypes = {
-  owner: PropTypes.string.isRequired,
   recipeId: PropTypes.string.isRequired,
 };
 

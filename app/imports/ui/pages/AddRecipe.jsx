@@ -13,7 +13,6 @@ import Ingredient from '/imports/ui/components/Ingredients';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import AddIngredient from '/imports/ui/components/AddIngredient';
-import Recipe from '/imports/ui/components/Recipes';
 
 /** Renders the Page for adding a document. */
 class AddRecipe extends React.Component {
@@ -63,7 +62,7 @@ class AddRecipe extends React.Component {
                     {this.props.ingredients.map((ingredient, index) =>
                       <Ingredient key={index} ingredient={ingredient}/>)}
                   </Feed>
-                  <AddIngredient owner='fakeuser@foo.com' recipeId={recipe._id}/>
+                  <AddIngredient recipeId='1'/>
                 </AutoForm>
                 <TextField name='steps'/>
                 <SubmitField value='Submit'/>
