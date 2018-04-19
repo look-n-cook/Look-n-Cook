@@ -8,7 +8,7 @@ const Ingredients = new Mongo.Collection('Ingredients');
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const IngredientSchema = new SimpleSchema({
   name: String,
-  recipeId: String,
+  quantity: Number,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

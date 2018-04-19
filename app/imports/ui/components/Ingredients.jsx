@@ -10,7 +10,8 @@ class Ingredient extends React.Component {
       <Feed.Event >
         <Feed.Content>
           <Feed.Summary>
-            {this.props.ingredient.ingredient}
+            {this.props.ingredient.name}
+            {this.props.ingredient.quantity}
           </Feed.Summary>
         </Feed.Content>
       </Feed.Event>

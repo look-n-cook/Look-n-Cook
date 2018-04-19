@@ -1,7 +1,7 @@
 import React from 'react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
-import { Ingredients, IngredientSchema } from '/imports/api/ingredient/ingredient';
-import { Grid, Segment, Header, Feed } from 'semantic-ui-react';
+import { Ingredients } from '/imports/api/ingredient/ingredient';
+import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -9,7 +9,6 @@ import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
-import Ingredient from '/imports/ui/components/Ingredients';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import AddIngredient from '/imports/ui/components/AddIngredient';
@@ -41,6 +40,7 @@ class AddRecipe extends React.Component {
     const owner = Meteor.user().username;
     Recipes.insert({ name, image, description, steps, owner, createdAt }, this.insertCallback);
   }
+
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
@@ -56,17 +56,12 @@ class AddRecipe extends React.Component {
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
                 <HiddenField name='createdAt' value={new Date()}/>
-                <AutoForm ref={(ref) => { this.formRef = ref; }}
-                          schema={IngredientSchema} onSubmit={this.submit}>
-                  <Feed>
-                    {this.props.ingredients.map((ingredient, index) =>
-                      <Ingredient key={index} ingredient={ingredient}/>)}
-                  </Feed>
-                  <AddIngredient recipeId='1'/>
-                </AutoForm>
-                <TextField name='steps'/>
-                <SubmitField value='Submit'/>
               </Segment>
+                <AddIngredient />
+              <Segment>
+                <TextField name='steps'/>
+              </Segment>
+              <SubmitField value='Submit'/>
             </AutoForm>
           </Grid.Column>
         </Grid>

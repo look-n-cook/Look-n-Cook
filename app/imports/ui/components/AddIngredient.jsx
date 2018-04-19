@@ -1,13 +1,14 @@
 import React from 'react';
 import { Ingredients, IngredientSchema } from '/imports/api/ingredient/ingredient';
-import { Segment } from 'semantic-ui-react';
+import { Recipes } from '/imports/api/recipe/recipe';
+import { Segment, Form } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
-import HiddenField from 'uniforms-semantic/HiddenField';
+import NumField from 'uniforms-semantic/NumField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
-import PropTypes from 'prop-types';
+
 
 /** Renders the Page for adding a document. */
 class AddIngredient extends React.Component {
@@ -32,8 +33,8 @@ class AddIngredient extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, recipeId } = data;
-    Ingredients.insert({ name, recipeId }, this.insertCallback);
+    const { name, quantity } = data;
+    Ingredients.insert({ name, quantity }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -41,18 +42,16 @@ class AddIngredient extends React.Component {
     return (
       <AutoForm ref={(ref) => { this.formRef = ref; }} schema={IngredientSchema} onSubmit={this.submit}>
         <Segment>
-          <TextField label="Add an ingredient" name='name'/>
-          <SubmitField value='Add'/>
-          <ErrorsField/>
-          <HiddenField name='recipeId' value={this.props.recipeId}/>
+          <Form.Group widths='equal'>
+            <TextField label="Add an ingredient" name='name'/>
+            <NumField name='quantity' decimal={false}/>
+            <SubmitField value='Add'/>
+            <ErrorsField/>
+          </Form.Group>
         </Segment>
       </AutoForm>
     );
   }
 }
-
-AddIngredient.propTypes = {
-  recipeId: PropTypes.string.isRequired,
-};
 
 export default AddIngredient;
