@@ -1,7 +1,7 @@
 import React from 'react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Ingredients } from '/imports/api/ingredient/ingredient';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment, Header, Feed } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -12,6 +12,7 @@ import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import AddIngredient from '/imports/ui/components/AddIngredient';
+import Ingredient from '/imports/ui/components/Ingredients';
 
 /** Renders the Page for adding a document. */
 class AddRecipe extends React.Component {
@@ -38,40 +39,48 @@ class AddRecipe extends React.Component {
   submit(data) {
     const { name, image, description, steps, createdAt } = data;
     const owner = Meteor.user().username;
-    Recipes.insert({ name, image, description, steps, owner, createdAt }, this.insertCallback);
+    const ingredientsList = [];
+    Recipes.insert({ name, image, description, ingredientsList, steps, owner, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Recipe</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }}
-                      schema={RecipeSchema} onSubmit={this.submit}>
-              <Segment>
-                <TextField name='name'/>
-                <TextField name='image'/>
-                <TextField name='description'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value='fakeuser@foo.com'/>
-                <HiddenField name='createdAt' value={new Date()}/>
-              </Segment>
-                <AddIngredient />
-              <Segment>
-                <TextField name='steps'/>
-              </Segment>
-              <SubmitField value='Submit'/>
-            </AutoForm>
-          </Grid.Column>
-        </Grid>
+      <Grid container centered>
+        <Grid.Column>
+          <Header as="h2" textAlign="center">Add Recipe</Header>
+          <AutoForm ref={(ref) => { this.formRef = ref; }} schema={RecipeSchema} onSubmit={this.submit}>
+            <Segment>
+              <TextField name='name'/>
+              <TextField name='image'/>
+              <TextField name='description'/>
+              <ErrorsField/>
+              <HiddenField name='owner' value='fakeuser@foo.com'/>
+              <HiddenField name='ingredientsList' value='fakeId'/>
+              <HiddenField name='createdAt' value={new Date()}/>
+            </Segment>
+          </AutoForm>
+          <Segment>
+            <AddIngredient/>
+            <Feed>
+              {this.props.ingredients.map((ingredient, index) => <Ingredient key={index} ingredient={ingredient}/>)}
+            </Feed>
+          </Segment>
+          <AutoForm ref={(ref) => { this.formRef = ref; }} schema={RecipeSchema} onSubmit={this.submit}>
+            <Segment>
+              <TextField name='steps'/>
+            </Segment>
+            <SubmitField value='Submit'/>
+          </AutoForm>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
 
 AddRecipe.propTypes = {
-  ingredients: PropTypes.array.isRequired,
   recipe: PropTypes.array.isRequired,
+  ingredients: PropTypes.array.isRequired,
 };
 
 export default withTracker(() => {

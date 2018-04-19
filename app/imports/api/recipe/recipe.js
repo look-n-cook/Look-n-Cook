@@ -10,7 +10,7 @@ const RecipeSchema = new SimpleSchema({
   name: String,
   image: String,
   description: String,
-  ingredients: [String],
+  ingredientsList: [String],
   steps: String,
   owner: String,
   createdAt: Date,

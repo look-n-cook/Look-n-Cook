@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feed } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -7,14 +7,14 @@ import { withRouter } from 'react-router-dom';
 class Ingredient extends React.Component {
   render() {
     return (
-      <Feed.Event >
-        <Feed.Content>
-          <Feed.Summary>
-            {this.props.ingredient.name}
-            {this.props.ingredient.quantity}
-          </Feed.Summary>
-        </Feed.Content>
-      </Feed.Event>
+      <Table basic='very' celled collapsing>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>{this.props.ingredient.name}</Table.Cell>
+            <Table.Cell>{this.props.ingredient.quantity}</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     );
   }
 }
