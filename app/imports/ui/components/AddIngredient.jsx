@@ -4,7 +4,6 @@ import { Recipes } from '/imports/api/recipe/recipe';
 import { Form } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
-import NumField from 'uniforms-semantic/NumField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -36,8 +35,8 @@ class AddIngredient extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, quantity } = data;
-    Ingredients.insert({ name, quantity }, this.insertCallback);
+    const { name, measurement } = data;
+    Ingredients.insert({ name, measurement }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -46,7 +45,7 @@ class AddIngredient extends React.Component {
       <AutoForm ref={(ref) => { this.formRef = ref; }} schema={IngredientSchema} onSubmit={this.submit}>
         <Form.Group widths='equal'>
           <TextField label="Add an ingredient" name='name'/>
-          <NumField name='quantity' decimal={false}/>
+          <TextField name='measurement'/>
           <SubmitField value='Add'/>
           <ErrorsField/>
         </Form.Group>

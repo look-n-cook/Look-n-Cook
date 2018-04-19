@@ -1,12 +1,13 @@
 import React from 'react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Ingredients } from '/imports/api/ingredient/ingredient';
-import { Grid, Segment, Header, Feed } from 'semantic-ui-react';
+import { Grid, Segment, Header, Feed, Form } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
+import BoolField from 'uniforms-semantic/BoolField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
@@ -37,10 +38,10 @@ class AddRecipe extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image, description, steps, createdAt } = data;
+    const { name, image, description, vegan, glutenfree, etc, steps, createdAt } = data;
     const owner = Meteor.user().username;
     const ingredientsList = [];
-    Recipes.insert({ name, image, description, ingredientsList, steps, owner, createdAt }, this.insertCallback);
+    Recipes.insert({ name, image, description, vegan, glutenfree, etc, ingredientsList, steps, owner, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -54,10 +55,17 @@ class AddRecipe extends React.Component {
               <TextField name='name'/>
               <TextField name='image'/>
               <TextField name='description'/>
-              <ErrorsField/>
+              <Form.Group>
+                <BoolField name='vegan'/>
+                <BoolField name='glutenfree'/>
+                <BoolField name='etc'/>
+              </Form.Group>
               <HiddenField name='owner' value='fakeuser@foo.com'/>
               <HiddenField name='ingredientsList' value='fakeId'/>
               <HiddenField name='createdAt' value={new Date()}/>
+              <HiddenField name='steps' value='fakeSteps'/>
+              <ErrorsField/>
+              <SubmitField value='Submit'/>
             </Segment>
           </AutoForm>
           <Segment>
@@ -66,12 +74,6 @@ class AddRecipe extends React.Component {
               {this.props.ingredients.map((ingredient, index) => <Ingredient key={index} ingredient={ingredient}/>)}
             </Feed>
           </Segment>
-          <AutoForm ref={(ref) => { this.formRef = ref; }} schema={RecipeSchema} onSubmit={this.submit}>
-            <Segment>
-              <TextField name='steps'/>
-            </Segment>
-            <SubmitField value='Submit'/>
-          </AutoForm>
         </Grid.Column>
       </Grid>
     );
@@ -79,7 +81,6 @@ class AddRecipe extends React.Component {
 }
 
 AddRecipe.propTypes = {
-  recipe: PropTypes.array.isRequired,
   ingredients: PropTypes.array.isRequired,
 };
 
