@@ -38,7 +38,7 @@ class AddRecipe extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image, description, vegan, glutenFree, etc,steps, createdAt } = data;
+    const { name, image, description, vegan, glutenFree, etc, steps, createdAt } = data;
     const owner = Meteor.user().username;
     Recipes.insert({ name, image, description, vegan, glutenFree, etc, steps, owner, createdAt }, this.insertCallback);
   }
