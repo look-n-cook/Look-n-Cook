@@ -32,7 +32,6 @@ class Recipe extends React.Component {
     }
   }
 
-
   render() {
     const cardStyle = {
       background: '#F3E2C4',

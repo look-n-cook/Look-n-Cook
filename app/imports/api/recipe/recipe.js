@@ -13,7 +13,18 @@ const RecipeSchema = new SimpleSchema({
   vegan: Boolean,
   glutenFree: Boolean,
   etc: Boolean,
-  ingredientsList: [String],
+  ingredients: {
+    type: Array,
+  },
+  'ingredients.$': {
+    type: Object,
+  },
+  'ingredients.$.name': {
+    type: String,
+  },
+  'ingredients.$.measurement': {
+    type: String,
+  },
   steps: [String],
   owner: String,
   createdAt: Date,
