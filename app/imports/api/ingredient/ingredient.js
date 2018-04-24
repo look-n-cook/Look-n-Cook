@@ -9,6 +9,7 @@ const Ingredients = new Mongo.Collection('Ingredients');
 const IngredientSchema = new SimpleSchema({
   name: String,
   measurement: String,
+  owner: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

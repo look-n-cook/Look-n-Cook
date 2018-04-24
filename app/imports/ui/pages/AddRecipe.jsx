@@ -38,9 +38,9 @@ class AddRecipe extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image, description, vegan, glutenfree, etc, steps, createdAt } = data;
+    const { name, image, description, vegan, glutenFree, etc,steps, createdAt } = data;
     const owner = Meteor.user().username;
-    Recipes.insert({ name, image, description, vegan, glutenfree, etc, ingredientsList, steps, owner, createdAt }, this.insertCallback);
+    Recipes.insert({ name, image, description, vegan, glutenFree, etc, steps, owner, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -56,11 +56,11 @@ class AddRecipe extends React.Component {
               <TextField name='description'/>
               <Form.Group>
                 <BoolField name='vegan'/>
-                <BoolField name='glutenfree'/>
+                <BoolField name='glutenFree'/>
                 <BoolField name='etc'/>
               </Form.Group>
               <HiddenField name='owner' value='fakeuser@foo.com'/>
-              <HiddenField name='ingredientsList' value='fakeId'/>
+              <HiddenField name='ingredientsList' value='stuff'/>
               <HiddenField name='createdAt' value={new Date()}/>
               <HiddenField name='steps' value='fakeSteps'/>
               <ErrorsField/>
@@ -70,7 +70,7 @@ class AddRecipe extends React.Component {
           <Segment>
             <AddIngredient/>
             <Feed>
-              {this.props.ingredients.map((ingredient, index) => <Ingredient key={index} ingredient={ingredient}/>)}
+              {this.props.ingredients.map((ingredient, index) => <Ingredient key={index} ingredient={ingredient} />)}
             </Feed>
           </Segment>
         </Grid.Column>

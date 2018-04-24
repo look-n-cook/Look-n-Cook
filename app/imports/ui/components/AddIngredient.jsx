@@ -6,6 +6,7 @@ import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
+import HiddenField from 'uniforms-semantic/HiddenField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
@@ -36,9 +37,9 @@ class AddIngredient extends React.Component {
   /** On submit, insert the data. */
   submit(data) {
     const { name, measurement } = data;
-    Ingredients.insert({ name, measurement }, this.insertCallback);
-    const ingredientsList = this.props.ingredients._id;
-    Recipes.insert({ ingredientsList });
+    const owner = Meteor.user().username;
+    Ingredients.insert({ name, measurement, owner }, this.insertCallback);
+    Recipes.ingredientsList.push(this.props.ingredient._id);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -48,6 +49,7 @@ class AddIngredient extends React.Component {
         <Form.Group widths='equal'>
           <TextField label="Add an ingredient" name='name'/>
           <TextField name='measurement'/>
+          <HiddenField name='owner' value='fakeuser@foo.com'/>
           <SubmitField value='Add'/>
           <ErrorsField/>
         </Form.Group>
@@ -58,14 +60,14 @@ class AddIngredient extends React.Component {
 
   AddIngredient.propTypes = {
     recipe: PropTypes.array.isRequired,
-    ingredients: PropTypes.array.isRequired,
+    ingredient: PropTypes.array.isRequired,
   };
 
   export default withTracker(() => {
     const subscription = Meteor.subscribe('Ingredients');
     const subscription2 = Meteor.subscribe('Recipes');
     return {
-    ingredients: Ingredients.find({}).fetch(),
+    ingredient: Ingredients.find({}).fetch(),
     recipe: Recipes.find({}).fetch(),
     ready: (subscription.ready() && subscription2.ready()),
   };

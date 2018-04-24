@@ -11,10 +11,10 @@ const RecipeSchema = new SimpleSchema({
   image: String,
   description: String,
   vegan: Boolean,
-  glutenfree: Boolean,
+  glutenFree: Boolean,
   etc: Boolean,
   ingredientsList: [String],
-  steps: String,
+  steps: [String],
   owner: String,
   createdAt: Date,
 }, { tracker: Tracker });
