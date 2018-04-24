@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Button, Feed, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter, NavLink, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class UserHomeRecipes extends React.Component {
@@ -44,8 +44,8 @@ class UserHomeRecipes extends React.Component {
               </Grid.Column>
             </Grid>
           </Card.Content>
-          <Card.Content extra>
-            <Button style={buttonStyle} as={NavLink} exact to="/recipe"> View Recipe </Button>
+          <Card.Content extra centered>
+            <Link to={`/recipe/${this.props.recipe._id}`}>View Recipe</Link>
           </Card.Content>
         </Card>
     );
