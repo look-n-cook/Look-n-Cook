@@ -7,7 +7,6 @@ function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Recipes.insert(data);
 }
-
 /** Initialize the collection if empty. */
 if (Recipes.find().count() === 0) {
   if (Meteor.settings.defaultRecipes) {

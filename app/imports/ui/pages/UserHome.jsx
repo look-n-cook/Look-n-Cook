@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import UserHomeRecipes from '/imports/ui/components/UserHomeRecipes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class Profile extends React.Component {
+class UserHome extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
@@ -30,7 +30,7 @@ class Profile extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-Profile.propTypes = {
+UserHome.propTypes = {
   recipes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -43,4 +43,4 @@ export default withTracker(() => {
     recipes: Recipes.find({}).fetch(),
     ready: (subscription.ready()),
   };
-})(Profile);
+})(UserHome);
