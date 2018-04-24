@@ -9,9 +9,32 @@ const Recipes = new Mongo.Collection('Recipes');
 const RecipeSchema = new SimpleSchema({
   name: String,
   image: String,
-  ingredients: String,
   description: String,
-  steps: String,
+  vegan: {
+    type: Boolean,
+    required: false,
+  },
+  glutenFree: {
+    type: Boolean,
+    required: false,
+  },
+  dairyFree: {
+    type: Boolean,
+    required: false,
+  },
+  ingredients: {
+    type: Array,
+  },
+  'ingredients.$': {
+    type: Object,
+  },
+  'ingredients.$.name': {
+    type: String,
+  },
+  'ingredients.$.measurement': {
+    type: String,
+  },
+  steps: [String],
   owner: String,
   createdAt: Date,
 }, { tracker: Tracker });
