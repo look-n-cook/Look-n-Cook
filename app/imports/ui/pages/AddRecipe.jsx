@@ -39,9 +39,9 @@ class AddRecipe extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image, description, vegan, glutenFree, etc, ingredients, steps, createdAt } = data;
+    const { name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, createdAt } = data;
     const owner = Meteor.user().username;
-    Recipes.insert({ name, image, description, vegan, glutenFree, etc, ingredients, steps, owner, createdAt }, this.insertCallback);
+    Recipes.insert({ name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, owner, createdAt }, this.insertCallback);
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -63,7 +63,7 @@ class AddRecipe extends React.Component {
               <Form.Group>
                 <BoolField name='vegan'/>
                 <BoolField name='glutenFree'/>
-                <BoolField name='etc'/>
+                <BoolField name='dairyFree'/>
               </Form.Group>
               <ListField name='ingredients'>
                 <ListItemField name='$'>

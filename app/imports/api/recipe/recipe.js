@@ -10,9 +10,18 @@ const RecipeSchema = new SimpleSchema({
   name: String,
   image: String,
   description: String,
-  vegan: Boolean,
-  glutenFree: Boolean,
-  etc: Boolean,
+  vegan: {
+    type: Boolean,
+    required: false,
+  },
+  glutenFree: {
+    type: Boolean,
+    required: false,
+  },
+  dairyFree: {
+    type: Boolean,
+    required: false,
+  },
   ingredients: {
     type: Array,
   },

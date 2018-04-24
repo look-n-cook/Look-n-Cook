@@ -43,7 +43,7 @@
       "description": "Acai bowls make a great breakfast and giving you two of your five a day",
       "vegan": "true",
       "glutenFree": "false",
-      "etc": "false",
+      "dairyFree": "false",
       "ingredientsList": [
         "Acai",
         "Strawberry",
@@ -60,7 +60,7 @@
       "description": "A healthy gluten free power greens salad packed with lucky black eyed peas and super nutrients.  A great way to start off the new year and get back on track with clean eating. Easy to make and full of flavor!",
       "vegan": "true",
       "glutenFree": "true",
-      "etc": "false",
+      "dairyFree": "false",
       "ingredients": [
         "Greens",
         "Black Eyed Peas"
