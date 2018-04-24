@@ -40,7 +40,6 @@ class AddRecipe extends React.Component {
   submit(data) {
     const { name, image, description, vegan, glutenfree, etc, steps, createdAt } = data;
     const owner = Meteor.user().username;
-    const ingredientsList = [];
     Recipes.insert({ name, image, description, vegan, glutenfree, etc, ingredientsList, steps, owner, createdAt }, this.insertCallback);
   }
 
@@ -82,6 +81,7 @@ class AddRecipe extends React.Component {
 
 AddRecipe.propTypes = {
   ingredients: PropTypes.array.isRequired,
+  recipe: PropTypes.array.isRequired,
 };
 
 export default withTracker(() => {

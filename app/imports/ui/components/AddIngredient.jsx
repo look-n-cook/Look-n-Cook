@@ -37,6 +37,8 @@ class AddIngredient extends React.Component {
   submit(data) {
     const { name, measurement } = data;
     Ingredients.insert({ name, measurement }, this.insertCallback);
+    const ingredientsList = this.props.ingredients._id;
+    Recipes.insert({ ingredientsList });
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
