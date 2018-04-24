@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Image, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link, NavLink } from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Recipes } from '/imports/api/recipe/recipe';
+import { withRouter, NavLink } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Recipe extends React.Component {
@@ -46,13 +46,11 @@ class Recipe extends React.Component {
           <div style={ { marginTop: '10px' } }>
             <Image floated='center' height='350px' width='300px' src={this.props.recipe.image} />
           </div>
-
             <Card.Description>
               <div style={ { marginTop: '375px', marginBottom: '20px' } }>
               {this.props.recipe.description}
               </div>
             </Card.Description>
-
           <Card.Meta>
             Added on
           </Card.Meta>
