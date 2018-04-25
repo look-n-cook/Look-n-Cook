@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment, Image, Table } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Image, Table, List } from 'semantic-ui-react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -19,30 +19,44 @@ class ViewRecipe extends React.Component {
         <Grid container divided={'vertically'} padded>
           <Grid.Row centered columns={2} padded>
             <Grid.Column>
-              <Header as="h2" textAlign="center">{this.props.doc.name}</Header>
-              <Table textAlign={'center'}>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell>Recipe By: {this.props.doc.owner}</Table.Cell>
-                    <Table.Cell>Created: {this.props.doc.createdAt.toLocaleDateString('en-US')}</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-              <span> "{this.props.doc.description}" </span>
+              <Header as="h1" textAlign="center">{this.props.doc.name}</Header>
+              <Grid>
+                <Grid.Row centered columns={2}>
+                  <Grid.Column>
+                    <Header as="h4" textAlign="center">Recipe By: {this.props.doc.owner}</Header>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Header as="h4" textAlign="center">Created: {this.props.doc.createdAt.toLocaleDateString('en-US')}</Header>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <Header as="h3" textAlign="center">"{this.props.doc.description}"</Header>
             </Grid.Column>
             <Grid.Column>
-              <Image height={'350px'} width={'350px'} src={this.props.doc.image}/>
+              <Image centered src={this.props.doc.image}/>
             </Grid.Column>
           </Grid.Row>
 
-          <Grid.Row>
-            <Header as={'h3'}>Ingredients</Header>
-            <span>{this.props.doc.ingredients}</span>
+          <Grid.Row columns={2} padded>
+            <Grid.Column>
+              <List bulleted>
+                <List.Header as={'h3'}>Ingredients</List.Header>
+                {this.props.doc.ingredients.map((ing, index) => <List.Item
+                    key={index}>{ing.measurement} {ing.name}</List.Item>)}
+              </List>
+            </Grid.Column>
+            <Grid.Column>
+              <List ordered>
+                <List.Header as={'h3'}>Directions</List.Header>
+                {this.props.doc.steps.map((step, index) => <List.Item
+                    key={index}>{step}</List.Item>)}
+              </List>
+            </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
+          {/* <Grid.Row>
             <Header as={'h3'}>Directions</Header>
             <span>{this.props.doc.steps}</span>
-          </Grid.Row>
+          </Grid.Row> */}
         </Grid>
     );
   }

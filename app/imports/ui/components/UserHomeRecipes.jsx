@@ -10,9 +10,6 @@ class UserHomeRecipes extends React.Component {
     const cardStyle = {
       background: '#F3E2C4',
     };
-    const buttonStyle = {
-      background: '#dacfb3',
-    };
     return (
         <Card centered style={cardStyle}>
           <Card.Content>
@@ -29,7 +26,7 @@ class UserHomeRecipes extends React.Component {
               </div>
             </Card.Description>
 
-            <Grid columns={2}>
+            <Grid columns={2} textAlign={'center'}>
               <Grid.Column>
                 <Card.Meta>
                   Created By
@@ -44,7 +41,7 @@ class UserHomeRecipes extends React.Component {
               </Grid.Column>
             </Grid>
           </Card.Content>
-          <Card.Content extra centered>
+          <Card.Content extra textAlign={'center'}>
             <Link to={`/recipe/${this.props.recipe._id}`}>View Recipe</Link>
           </Card.Content>
         </Card>
