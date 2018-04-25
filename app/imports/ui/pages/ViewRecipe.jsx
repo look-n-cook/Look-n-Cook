@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment, Image, Table, List } from 'semantic-ui-react';
+import { Grid, Loader, Header, Image, List, Container } from 'semantic-ui-react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -15,49 +15,45 @@ class ViewRecipe extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
+    const cardStyle = {
+      background: '#F3E2C4',
+      borderBottomLeftRadius: '20px',
+      borderBottomRightRadius: '20px',
+      borderTopLeftRadius: '20px',
+      borderTopRightRadius: '20px',
+    };
     return (
-        <Grid container divided={'vertically'} padded>
-          <Grid.Row centered columns={2} padded>
-            <Grid.Column>
-              <Header as="h1" textAlign="center">{this.props.doc.name}</Header>
-              <Grid>
-                <Grid.Row centered columns={2}>
-                  <Grid.Column>
-                    <Header as="h4" textAlign="center">Recipe By: {this.props.doc.owner}</Header>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Header as="h4" textAlign="center">Created: {this.props.doc.createdAt.toLocaleDateString('en-US')}</Header>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-              <Header as="h3" textAlign="center">"{this.props.doc.description}"</Header>
-            </Grid.Column>
-            <Grid.Column>
-              <Image centered src={this.props.doc.image}/>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row columns={2} padded>
-            <Grid.Column>
-              <List bulleted>
-                <List.Header as={'h3'}>Ingredients</List.Header>
-                {this.props.doc.ingredients.map((ing, index) => <List.Item
-                    key={index}>{ing.measurement} {ing.name}</List.Item>)}
-              </List>
-            </Grid.Column>
-            <Grid.Column>
-              <List ordered>
-                <List.Header as={'h3'}>Directions</List.Header>
-                {this.props.doc.steps.map((step, index) => <List.Item
-                    key={index}>{step}</List.Item>)}
-              </List>
-            </Grid.Column>
-          </Grid.Row>
-          {/* <Grid.Row>
-            <Header as={'h3'}>Directions</Header>
-            <span>{this.props.doc.steps}</span>
-          </Grid.Row> */}
-        </Grid>
+          <Grid container divided={'vertically'} padded style={cardStyle}>
+            <Grid.Row centered columns={2} padded>
+              <Grid.Column>
+                <Header as="h1" textAlign="center">{this.props.doc.name}</Header>
+                <Grid>
+                  <Grid.Row centered columns={2}>
+                    <Grid.Column>
+                      <Header as="h4" textAlign="center">Recipe By: {this.props.doc.owner}</Header>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Header as="h4" textAlign="center">Created: {this.props.doc.createdAt.toLocaleDateString('en-US')}</Header>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+                <Header as="h3" textAlign="center">"{this.props.doc.description}"</Header>
+                <List bulleted>
+                  <List.Header as={'h3'}>Ingredients</List.Header>
+                  {this.props.doc.ingredients.map((ing, index) => <List.Item
+                      key={index}>{ing.measurement} {ing.name}</List.Item>)}
+                </List>
+                <List ordered>
+                  <List.Header as={'h3'}>Directions</List.Header>
+                  {this.props.doc.steps.map((step, index) => <List.Item
+                      key={index}>{step}</List.Item>)}
+                </List>
+              </Grid.Column>
+              <Grid.Column>
+                <Image centered height={'500px'} src={this.props.doc.image}/>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
     );
   }
 }
