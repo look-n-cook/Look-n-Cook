@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Button, Feed } from 'semantic-ui-react';
+import { Card, Image, Button, Feed, } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Recipes } from '/imports/api/recipe/recipe';
@@ -58,7 +58,7 @@ class Recipe extends React.Component {
         <Card.Content extra>
           <Button basic onClick={this.onClick}>Delete</Button>
           <Button basic as={NavLink} exact to="/recipe"> Recipe </Button>
-          <Button basic as={NavLink} exact to="/edit"> Edit </Button>
+          <Button basic as={NavLink} exact to={`/edit/${this.props.recipe._id}`}> Edit </Button>
         </Card.Content>
       </Card>
     );

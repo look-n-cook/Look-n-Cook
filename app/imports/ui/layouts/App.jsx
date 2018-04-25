@@ -11,7 +11,7 @@ import Profile from '../pages/Profile';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import UserHome from '../pages/UserHome';
 import AddRecipe from '../pages/AddRecipe';
-import EditStuff from '../pages/EditStuff';
+import EditRecipe from '../pages/EditRecipe';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -39,7 +39,7 @@ class App extends React.Component {
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/home" component={UserHome}/>
               <ProtectedRoute path="/add" component={AddRecipe}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+              <ProtectedRoute path="/edit/:_id" component={EditRecipe}/>
               <ProtectedRoute path="/recipe/:_id" component={ViewRecipe}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/admin-recipes" component={ListRecipesAdmin}/>
