@@ -23,8 +23,10 @@ const VendorSchema = new SimpleSchema({
   'ingredients.$.price': {
     type: Number,
   },
+  'ingredients.$.createdAt': {
+    type: Date,
+  },
   owner: String,
-  createdAt: Date,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
