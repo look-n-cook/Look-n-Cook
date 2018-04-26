@@ -37,7 +37,7 @@ class UserHomeRecipes extends React.Component {
                 <Card.Meta>
                   Added on
                 </Card.Meta>
-                <Feed.Date content={this.props.recipe.createdAt}/>
+                <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')}/>
               </Grid.Column>
             </Grid>
           </Card.Content>

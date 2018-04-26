@@ -53,7 +53,7 @@ class Recipe extends React.Component {
           <Card.Meta>
             Added on
           </Card.Meta>
-          <Feed.Date content={this.props.recipe.createdAt} />
+          <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')} />
         </Card.Content>
         <Card.Content extra>
           <Button basic onClick={this.onClick}>Delete</Button>

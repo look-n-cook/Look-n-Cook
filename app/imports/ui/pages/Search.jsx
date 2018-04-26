@@ -105,7 +105,10 @@ class Search extends React.Component {
     }
 
     if (this.state.submittedDate !== '') {
-      this.recipes = _.filter((this.recipes), (recipe) => recipe.createdAt === this.state.submittedDate);
+      this.recipes = _.filter(
+          (this.recipes),
+          (recipe) => recipe.createdAt.toLocaleDateString('en-US') === this.state.submittedDate,
+      );
     }
 
     if (this.state.submittedIngredient !== '') {
