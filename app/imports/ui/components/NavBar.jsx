@@ -104,6 +104,7 @@ class NavBar extends React.Component {
                   <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
                     <Dropdown.Menu>
                       {(
+                          !Roles.userIsInRole(Meteor.userId(), 'admin') &&
                           !Roles.userIsInRole(Meteor.userId(), 'vendor') &&
                           this.props.currentUser !== ''
                       ) ? ([
