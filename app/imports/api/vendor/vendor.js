@@ -8,7 +8,6 @@ const Vendors = new Mongo.Collection('Vendors');
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const VendorSchema = new SimpleSchema({
   name: String,
-  description: String,
   ingredients: {
     type: Array,
   },
