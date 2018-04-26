@@ -92,19 +92,53 @@ class Search extends React.Component {
   }
 
   printRecipes() {
-    // if (this.state.submittedKeyword === '' &&
-    //     this.state.submittedDate === '' &&
-    //     this.state.submittedIngredient === '' &&
-    //     this.state.submittedVegan === false &&
-    //     this.state.submittedGlutenFree === false &&
-    //     this.state.submittedDairyFree === false) {
-    // }
+    this.recipes = this.props.recipes.map((recipe) => recipe);
+
+    if (this.state.submittedKeyword !== '') {
+      const keyword = this.state.submittedKeyword;
+      this.recipes = _.filter((this.recipes), function (recipe) {
+        if (recipe.name.match(keyword) || recipe.description.match(keyword)) {
+          return recipe;
+        }
+        return null;
+      });
+    }
 
     if (this.state.submittedDate !== '') {
-      return Recipes.find({
-        createdAt: this.state.submittedDate }).map((recipe, index) =>
-          <UserHomeRecipe key={index} recipe={recipe}/>);
+      this.recipes = _.filter((this.recipes), (recipe) => recipe.createdAt === this.state.submittedDate);
     }
+
+    if (this.state.submittedIngredient !== '') {
+      const ingredient = this.state.submittedIngredient;
+      this.recipes = _.filter((this.recipes), function (recipe) {
+        if (_.find((recipe.ingredients), (recipeIngredient) => recipeIngredient.name.match(ingredient))) {
+          return recipe;
+        }
+        return null;
+      });
+    }
+
+    if (this.state.submittedVegan !== false) {
+      this.recipes = _.filter((this.recipes), (recipe) => recipe.vegan === true);
+    }
+
+    if (this.state.submittedGlutenFree !== false) {
+      this.recipes = _.filter((this.recipes), (recipe) => recipe.glutenFree === true);
+    }
+
+    if (this.state.submittedDairyFree !== false) {
+      this.recipes = _.filter((this.recipes), (recipe) => recipe.dairyFree === true);
+    }
+
+    if (this.state.submittedKeyword !== '' ||
+        this.state.submittedDate !== '' ||
+        this.state.submittedIngredient !== '' ||
+        this.state.submittedVegan !== false ||
+        this.state.submittedGlutenFree !== false ||
+        this.state.submittedDairyFree !== false) {
+      return this.recipes.map((recipe, index) => <UserHomeRecipe key={index} recipe={recipe}/>);
+    }
+
     return this.props.recipes.map((recipe, index) => <UserHomeRecipe key={index} recipe={recipe}/>);
   }
 

@@ -12,15 +12,15 @@ const RecipeSchema = new SimpleSchema({
   description: String,
   vegan: {
     type: Boolean,
-    required: false,
+    required: true,
   },
   glutenFree: {
     type: Boolean,
-    required: false,
+    required: true,
   },
   dairyFree: {
     type: Boolean,
-    required: false,
+    required: true,
   },
   ingredients: {
     type: Array,

@@ -33,7 +33,7 @@ class ViewRecipe extends React.Component {
                       <Header as="h4" textAlign="center">Recipe By: {this.props.doc.owner}</Header>
                     </Grid.Column>
                     <Grid.Column>
-                      <Header as="h4" textAlign="center">Created: {this.props.doc.createdAt.toLocaleDateString('en-US')}</Header>
+                      <Header as="h4" textAlign="center">Created: {this.props.doc.createdAt}</Header>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

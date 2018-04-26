@@ -64,9 +64,9 @@ class AddRecipe extends React.Component {
               <TextField name='image'/>
               <TextField name='description'/>
               <Form.Group>
-                <BoolField name='vegan'/>
-                <BoolField name='glutenFree'/>
-                <BoolField name='dairyFree'/>
+                <BoolField value={false} name='vegan'/>
+                <BoolField value={false} name='glutenFree'/>
+                <BoolField value={false} name='dairyFree'/>
               </Form.Group>
               <ListField name='ingredients'>
                 <ListItemField name='$'>
