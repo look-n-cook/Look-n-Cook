@@ -42,11 +42,11 @@ class NavBar extends React.Component {
               <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-recipes" key='admin-recipes'>
                 Recipes
               </Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-ingredients" key='admin-ingredients'>
-                Ingredients
-              </Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-users" key='admin-users'>
                 Users
+              </Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-ingredients" key='admin-ingredients'>
+                Ingredients
               </Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-vendors" key='admin-vendors'>
                 Vendors
