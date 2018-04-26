@@ -53,14 +53,20 @@ class NavBar extends React.Component {
               </Menu.Item>,
             ]) : ''}
 
+            {Roles.userIsInRole(Meteor.userId(), 'vendor') ? ([
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/vendor-ingredients" key='vendor-ingredients'>
+                Ingredients
+              </Menu.Item>,
+            ]) : ''}
+
             {(
+                !Roles.userIsInRole(Meteor.userId(), 'admin') &&
                 !Roles.userIsInRole(Meteor.userId(), 'vendor') &&
                 this.props.currentUser !== ''
             ) ? ([
               <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/add" key='add'>
                 Add Recipe
               </Menu.Item>,
-
             ]) : ''}
 
             {Roles.userIsInRole(Meteor.userId(), 'vendor') ? ([
@@ -69,12 +75,20 @@ class NavBar extends React.Component {
               </Menu.Item>,
             ]) : ''}
 
-            {this.props.currentUser !== '' ? ([
+            {(
+                !Roles.userIsInRole(Meteor.userId(), 'admin') &&
+                this.props.currentUser !== ''
+            ) ? ([
               <Menu.Item as={NavLink} activeClassName="active" exact to="/search" key='search'>
                 <Icon name='search' size='large'/>
               </Menu.Item>,
             ]) : ''}
 
+            {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
+              <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/search" key='search'>
+                <Icon name='search' size='large'/>
+              </Menu.Item>,
+            ]) : ''}
 
             {this.props.currentUser === '' ? (
                 <Menu.Item position="right">
@@ -89,7 +103,13 @@ class NavBar extends React.Component {
                 <Menu.Item>
                   <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
                     <Dropdown.Menu>
-                      <Dropdown.Item icon="id card outline" text="Profile" as={NavLink} exact to="/profile"/>
+                      {(
+                          !Roles.userIsInRole(Meteor.userId(), 'vendor') &&
+                          this.props.currentUser !== ''
+                      ) ? ([
+                        <Dropdown.Item icon="id card outline" text="Profile" key='profile'
+                                       as={NavLink} exact to="/profile"/>,
+                      ]) : ''}
                       <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
                     </Dropdown.Menu>
                   </Dropdown>
