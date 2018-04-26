@@ -15,11 +15,13 @@ class Profile extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const sortedByDate = _.sortBy(this.props.recipes, 'createdAt');
+    const newest = sortedByDate.reverse();
     return (
       <Container>
         <Header as="h2" textAlign="center" inverted>Profile Page</Header>
         <Card.Group>
-          {this.props.recipes.map((recipe, index) => <Recipe key={index} recipe={recipe} />)}
+          {newest.map((recipe, index) => <Recipe key={index} recipe={recipe} />)}
         </Card.Group>
       </Container>
     );

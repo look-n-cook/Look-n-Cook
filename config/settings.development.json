@@ -24,12 +24,29 @@
       "glutenFree": "false",
       "dairyFree": "false",
       "ingredients": [
-        "Acai",
-        "Strawberry",
-        "Banana",
-        "Soy Milk"
+        {
+          "name": "Acai",
+          "measurement": "4 cups"
+        },
+        {
+          "name": "Strawberry",
+          "measurement": "4"
+        },
+        {
+          "name": "Banana",
+          "measurement": "1/2"
+        },
+        {
+          "name": "Soy Milk",
+          "measurement": "1 cup"
+        }
       ],
-      "steps": "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender; blend until smooth, but still thick. Add more soy milk as needed; smoothie should have the consistency of frozen yogurt.....",
+      "steps": [
+        "Combine acai pulp, 2/3 of the banana, and 2 tablespoons of soy milk in a blender.",
+        "Blend until smooth, but still thick.",
+        "(Add more soy milk as needed)",
+        "Smoothie should have the consistency of frozen yogurt"
+      ],
       "createdAt": "4/15/2018",
       "owner": "john@foo.com"
     },
@@ -41,10 +58,18 @@
       "glutenFree": "true",
       "dairyFree": "false",
       "ingredients": [
-        "Greens",
-        "Black Eyed Peas"
+        {
+          "name": "Greens",
+          "measurement": "A lot"
+        },
+        {
+          "name": "Black Eyed Peas",
+          "measurement": "A band"
+        }
       ],
-      "steps": "Rinse your chopped greens and add cabage, in a medium pan.....",
+      "steps": [
+        "Rinse your chopped greens and add cabage in a medium pan."
+      ],
       "createdAt": "4/15/2018",
       "owner": "john@foo.com"
     }

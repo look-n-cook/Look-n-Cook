@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Button, Feed, } from 'semantic-ui-react';
+import { Card, Image, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Recipes } from '/imports/api/recipe/recipe';

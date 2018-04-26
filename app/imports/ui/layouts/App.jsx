@@ -16,11 +16,13 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import ViewRecipe from '../pages/ViewRecipe';
 import Separator from '../components/Separator';
 import ListRecipesAdmin from '../pages/ListRecipesAdmin';
 import ListUsersAdmin from '../pages/ListUsersAdmin';
 import ListVendorsAdmin from '../pages/ListVendorsAdmin';
 import ListIngredientsAdmin from '../pages/ListIngredientsAdmin';
+import Search from '../pages/Search';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -38,7 +40,9 @@ class App extends React.Component {
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/home" component={UserHome}/>
               <ProtectedRoute path="/add" component={AddRecipe}/>
+              <ProtectedRoute path="/search" component={Search}/>
               <ProtectedRoute path="/edit/:_id" component={EditRecipe}/>
+              <ProtectedRoute path="/recipe/:_id" component={ViewRecipe}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/admin-recipes" component={ListRecipesAdmin}/>
               <AdminProtectedRoute path="/admin-users" component={ListUsersAdmin}/>
