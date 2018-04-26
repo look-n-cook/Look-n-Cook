@@ -1,6 +1,5 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import { Meteor } from 'meteor/meteor';
 import { Container, Loader, Card, Grid, Form, Button } from 'semantic-ui-react';
 import { Recipes } from '/imports/api/recipe/recipe';
@@ -15,15 +14,98 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: moment(),
+      keyword: '',
+      startDate: null,
+      ingredient: '',
+      vegan: false,
+      glutenFree: false,
+      dairyFree: false,
+      submittedKeyword: '',
+      submittedDate: '',
+      submittedIngredient: '',
+      submittedVegan: false,
+      submittedGlutenFree: false,
+      submittedDairyFree: false,
+      cardList: this.props.recipes,
     };
+    this.handleDate = this.handleDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.print = this.print.bind(this);
   }
 
-  handleChange(date) {
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleCheck = (e, { name, checked }) => this.setState({ [name]: checked })
+
+  handleDate(date) {
     this.setState({
       startDate: date,
     });
+  }
+
+  handleSubmit = () => {
+    const { keyword, ingredient, vegan, glutenFree, dairyFree } = this.state;
+
+    if (keyword !== '') {
+      this.setState({ submittedKeyword: keyword });
+    } else {
+      this.setState({ submittedKeyword: '' });
+    }
+
+    if (this.state.startDate === null) {
+      this.setState({ submittedDate: '' });
+    } else {
+      this.setState({ submittedDate: this.state.startDate.toDate().toLocaleDateString('en-US') });
+    }
+
+    if (ingredient !== '') {
+      this.setState({ submittedIngredient: ingredient });
+    } else {
+      this.setState({ submittedIngredient: '' });
+    }
+
+    if (vegan !== false) {
+      this.setState({ submittedVegan: vegan });
+    } else {
+      this.setState({ submittedVegan: false });
+    }
+
+    if (glutenFree !== false) {
+      this.setState({ submittedGlutenFree: glutenFree });
+    } else {
+      this.setState({ submittedGlutenFree: false });
+    }
+
+    if (dairyFree !== false) {
+      this.setState({ submittedDairyFree: dairyFree });
+    } else {
+      this.setState({ submittedDairyFree: false });
+    }
+  }
+
+  print() {
+    console.log(`Keyword: ${this.state.submittedKeyword}`);
+    console.log(`Date: ${this.state.submittedDate}`);
+    console.log(`Ingredient: ${this.state.submittedIngredient}`);
+    console.log(`Vegan: ${this.state.submittedVegan}`);
+    console.log(`GlutenFree: ${this.state.submittedGlutenFree}`);
+    console.log(`DairyFree: ${this.state.submittedDairyFree}`);
+  }
+
+  printRecipes() {
+    // if (this.state.submittedKeyword === '' &&
+    //     this.state.submittedDate === '' &&
+    //     this.state.submittedIngredient === '' &&
+    //     this.state.submittedVegan === false &&
+    //     this.state.submittedGlutenFree === false &&
+    //     this.state.submittedDairyFree === false) {
+    // }
+
+    if (this.state.submittedDate !== '') {
+      return Recipes.find({
+        createdAt: this.state.submittedDate }).map((recipe, index) =>
+          <UserHomeRecipe key={index} recipe={recipe}/>);
+    }
+    return this.props.recipes.map((recipe, index) => <UserHomeRecipe key={index} recipe={recipe}/>);
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -56,12 +138,20 @@ class Search extends React.Component {
       marginLeft: '0',
     };
 
+    const {
+      keyword,
+      ingredient,
+      vegan,
+      glutenFree,
+      dairyFree,
+    } = this.state;
+
     return (
         <Grid columns={2} style={gridStyle}>
           <Grid.Column style={leftColStyle}>
             <Container>
               <Card.Group style={cardGroupStyle}>
-                {this.props.recipes.map((recipe, index) => <UserHomeRecipe key={index} recipe={recipe}/>)}
+                {this.printRecipes()}
               </Card.Group>
             </Container>
           </Grid.Column>
@@ -70,32 +160,38 @@ class Search extends React.Component {
               <h2>Search</h2>
               <hr/>
               <br/>
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
-                  <Form.Input label='Keywords' placeholder='Enter text'/>
+                  <Form.Input name='keyword' value={keyword} label='Keywords' placeholder='Enter keyword'
+                              onChange={this.handleChange}/>
                 </Form.Group>
                 <br/>
-                <Form.Field label='Date'/>
+                <Form.Field name='date' label='Date'/>
                 <DatePicker
+                    placeholderText='Select date'
                     selected={this.state.startDate}
-                    onChange={this.handleChange}
+                    onChange={this.handleDate}
                 />
                 <br/>
                 <br/>
                 <Form.Group>
-                  <Form.Input label='Ingredients' placeholder='Enter text'/>
+                  <Form.Input name='ingredient' value={ingredient} label='Ingredients' placeholder='Enter ingredient'
+                              onChange={this.handleChange}/>
                 </Form.Group>
                 <br/>
                 <Form.Field label='Restrictions'/>
                 <Form.Group>
-                  <Form.Checkbox label='Gluten-free'/>
-                  <Form.Checkbox label='Vegan'/>
-                  <Form.Checkbox label='Dairy-free'/>
+                  <Form.Checkbox name='glutenFree' label='Gluten-free' checked={glutenFree}
+                                 onChange={this.handleCheck}/>
+                  <Form.Checkbox name='vegan' label='Vegan' checked={vegan} onChange={this.handleCheck}/>
+                  <Form.Checkbox name='dairyFree' label='Dairy-free' checked={dairyFree} onChange={this.handleCheck}/>
                 </Form.Group>
                 <br/>
                 <hr/>
-                <Button type='submit'>Search</Button>
+                <Button content='Search'/>
               </Form>
+              <Button content='Print' onClick={this.print}/>
+              <br/>
             </Container>
           </Grid.Column>
         </Grid>
