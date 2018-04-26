@@ -164,6 +164,9 @@ class Search extends React.Component {
     const cardGroupStyle = {
       marginLeft: '0',
     };
+    const buttonStyle = {
+      background: '#ACC198',
+    };
 
     const {
       keyword,
@@ -215,9 +218,8 @@ class Search extends React.Component {
                 </Form.Group>
                 <br/>
                 <hr/>
-                <Button content='Search'/>
+                <Button style={buttonStyle} content='Search'/>
               </Form>
-              <br/>
             </Container>
           </Grid.Column>
         </Grid>
