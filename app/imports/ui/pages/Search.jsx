@@ -30,7 +30,6 @@ class Search extends React.Component {
     };
     this.handleDate = this.handleDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.print = this.print.bind(this);
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -80,15 +79,6 @@ class Search extends React.Component {
     } else {
       this.setState({ submittedDairyFree: false });
     }
-  }
-
-  print() {
-    console.log(`Keyword: ${this.state.submittedKeyword}`);
-    console.log(`Date: ${this.state.submittedDate}`);
-    console.log(`Ingredient: ${this.state.submittedIngredient}`);
-    console.log(`Vegan: ${this.state.submittedVegan}`);
-    console.log(`GlutenFree: ${this.state.submittedGlutenFree}`);
-    console.log(`DairyFree: ${this.state.submittedDairyFree}`);
   }
 
   printRecipes() {
@@ -227,7 +217,6 @@ class Search extends React.Component {
                 <hr/>
                 <Button content='Search'/>
               </Form>
-              <Button content='Print' onClick={this.print}/>
               <br/>
             </Container>
           </Grid.Column>
