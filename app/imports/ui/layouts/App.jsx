@@ -9,14 +9,14 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Profile from '../pages/Profile';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import UserHome from '../pages/UserHome';
 import AddRecipe from '../pages/AddRecipe';
-import EditStuff from '../pages/EditStuff';
+import EditRecipe from '../pages/EditRecipe';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import ViewRecipe from '../pages/ViewRecipe';
 import Separator from '../components/Separator';
 import ListRecipesAdmin from '../pages/ListRecipesAdmin';
 import ListUsersAdmin from '../pages/ListUsersAdmin';
@@ -40,8 +40,9 @@ class App extends React.Component {
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/home" component={UserHome}/>
               <ProtectedRoute path="/add" component={AddRecipe}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/search" component={Search}/>
+              <ProtectedRoute path="/edit/:_id" component={EditRecipe}/>
+              <ProtectedRoute path="/recipe/:_id" component={ViewRecipe}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/admin-recipes" component={ListRecipesAdmin}/>
               <AdminProtectedRoute path="/admin-users" component={ListUsersAdmin}/>

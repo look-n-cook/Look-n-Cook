@@ -53,12 +53,12 @@ class Recipe extends React.Component {
           <Card.Meta>
             Added on
           </Card.Meta>
-          <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')} />
+          <Feed.Date content={this.props.recipe.createdAt} />
         </Card.Content>
         <Card.Content extra>
           <Button basic onClick={this.onClick}>Delete</Button>
           <Button basic as={NavLink} exact to="/recipe"> Recipe </Button>
-          <Button basic as={NavLink} exact to="/edit"> Edit </Button>
+          <Button basic as={NavLink} exact to={`/edit/${this.props.recipe._id}`}> Edit </Button>
         </Card.Content>
       </Card>
     );

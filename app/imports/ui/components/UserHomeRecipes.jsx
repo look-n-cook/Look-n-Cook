@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Button, Feed, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter, NavLink, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class UserHomeRecipes extends React.Component {
@@ -9,9 +9,6 @@ class UserHomeRecipes extends React.Component {
   render() {
     const cardStyle = {
       background: '#F3E2C4',
-    };
-    const buttonStyle = {
-      background: '#dacfb3',
     };
     return (
         <Card centered style={cardStyle}>
@@ -29,7 +26,7 @@ class UserHomeRecipes extends React.Component {
               </div>
             </Card.Description>
 
-            <Grid columns={2}>
+            <Grid columns={2} textAlign={'center'}>
               <Grid.Column>
                 <Card.Meta>
                   Created By
@@ -40,12 +37,12 @@ class UserHomeRecipes extends React.Component {
                 <Card.Meta>
                   Added on
                 </Card.Meta>
-                <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')}/>
+                <Feed.Date content={this.props.recipe.createdAt}/>
               </Grid.Column>
             </Grid>
           </Card.Content>
-          <Card.Content extra>
-            <Button style={buttonStyle} as={NavLink} exact to="/recipe"> View Recipe </Button>
+          <Card.Content extra textAlign={'center'}>
+            <Link to={`/recipe/${this.props.recipe._id}`}>View Recipe</Link>
           </Card.Content>
         </Card>
     );

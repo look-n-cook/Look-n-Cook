@@ -41,7 +41,10 @@ class AddRecipe extends React.Component {
   submit(data) {
     const { name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, createdAt } = data;
     const owner = Meteor.user().username;
-    Recipes.insert({ name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, owner, createdAt }, this.insertCallback);
+    Recipes.insert(
+        { name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, owner, createdAt },
+        this.insertCallback,
+    );
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -74,7 +77,7 @@ class AddRecipe extends React.Component {
                 </ListItemField>
               </ListField>
               <HiddenField name='owner' value='fakeuser@foo.com'/>
-              <HiddenField name='createdAt' value={new Date()}/>
+              <HiddenField name='createdAt' value={new Date().toLocaleDateString('en-US')}/>
               <ListField name='steps'>
                 <ListDelField name='$'/>
                 <TextField name='$'/>

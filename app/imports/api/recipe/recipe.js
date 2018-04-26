@@ -24,6 +24,7 @@ const RecipeSchema = new SimpleSchema({
   },
   ingredients: {
     type: Array,
+    minCount: 1,
   },
   'ingredients.$': {
     type: Object,
@@ -34,9 +35,15 @@ const RecipeSchema = new SimpleSchema({
   'ingredients.$.measurement': {
     type: String,
   },
-  steps: [String],
+  steps: {
+    type: Array,
+    minCount: 1,
+  },
+  'steps.$': {
+    type: String,
+  },
   owner: String,
-  createdAt: Date,
+  createdAt: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
