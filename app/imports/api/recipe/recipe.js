@@ -12,15 +12,15 @@ const RecipeSchema = new SimpleSchema({
   description: String,
   vegan: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   glutenFree: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   dairyFree: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   ingredients: {
     type: Array,
@@ -43,7 +43,7 @@ const RecipeSchema = new SimpleSchema({
     type: String,
   },
   owner: String,
-  createdAt: String,
+  createdAt: Date,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
