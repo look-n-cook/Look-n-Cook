@@ -29,35 +29,63 @@ class NavBar extends React.Component {
         <div style={imageStyle} className='navbar-image'/>
         <Menu style={menuStyle} attached="top" borderless inverted>
           {this.props.currentUser === '' ? (
-              <Menu.Item as={NavLink} activeClassName="" exact to="/">
-                <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
-              </Menu.Item>
+            <Menu.Item as={NavLink} activeClassName="" exact to="/">
+              <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+            </Menu.Item>
           ) : (
-              <Menu.Item as={NavLink} activeClassName="" exact to="/home">
-                <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
-              </Menu.Item>
+            <Menu.Item as={NavLink} activeClassName="" exact to="/home">
+              <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+            </Menu.Item>
           )}
 
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
             <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-recipes" key='admin-recipes'>
               Recipes
             </Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-ingredients" key='admin-ingredients'>
-              Ingredients
-            </Menu.Item>,
             <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-users" key='admin-users'>
               Users
+            </Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-ingredients" key='admin-ingredients'>
+              Ingredients
             </Menu.Item>,
             <Menu.Item as={NavLink} activeClassName="active" exact to="/admin-vendors" key='admin-vendors'>
               Vendors
             </Menu.Item>,
           ]) : ''}
 
-          {this.props.currentUser ? ([
+          {Roles.userIsInRole(Meteor.userId(), 'vendor') ? ([
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/vendor-ingredients" key='vendor-ingredients'>
+              Ingredients
+            </Menu.Item>,
+          ]) : ''}
+
+          {(
+            !Roles.userIsInRole(Meteor.userId(), 'admin') &&
+            !Roles.userIsInRole(Meteor.userId(), 'vendor') &&
+            this.props.currentUser !== ''
+          ) ? ([
             <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/add" key='add'>
               Add Recipe
             </Menu.Item>,
+          ]) : ''}
+
+          {Roles.userIsInRole(Meteor.userId(), 'vendor') ? ([
+            <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/ingredient" key='add'>
+              Add Ingredient
+            </Menu.Item>,
+          ]) : ''}
+
+          {(
+            !Roles.userIsInRole(Meteor.userId(), 'admin') &&
+            this.props.currentUser !== ''
+          ) ? ([
             <Menu.Item as={NavLink} activeClassName="active" exact to="/search" key='search'>
+              <Icon name='search' size='large'/>
+            </Menu.Item>,
+          ]) : ''}
+
+          {Roles.userIsInRole(Meteor.userId(), 'admin') ? ([
+            <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/search" key='search'>
               <Icon name='search' size='large'/>
             </Menu.Item>,
           ]) : ''}
@@ -75,7 +103,14 @@ class NavBar extends React.Component {
             <Menu.Item>
               <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
                 <Dropdown.Menu>
-                  <Dropdown.Item icon="id card outline" text="Profile" as={NavLink} exact to="/profile"/>
+                  {(
+                    !Roles.userIsInRole(Meteor.userId(), 'admin') &&
+                    !Roles.userIsInRole(Meteor.userId(), 'vendor') &&
+                    this.props.currentUser !== ''
+                  ) ? ([
+                    <Dropdown.Item icon="id card outline" text="Profile" key='profile'
+                                   as={NavLink} exact to="/profile"/>,
+                  ]) : ''}
                   <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
                 </Dropdown.Menu>
               </Dropdown>
