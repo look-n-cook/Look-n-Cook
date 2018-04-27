@@ -7,7 +7,6 @@ const Vendors = new Mongo.Collection('Vendors');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const VendorSchema = new SimpleSchema({
-  name: String,
   ingredients: {
     type: Array,
   },
@@ -17,14 +16,16 @@ const VendorSchema = new SimpleSchema({
   'ingredients.$.name': {
     type: String,
   },
-  'ingredients.$.size': {
+  'ingredients.$.quantity': {
     type: String,
   },
   'ingredients.$.price': {
     type: Number,
   },
+  'ingredients.$.createdAt': {
+    type: Date,
+  },
   owner: String,
-  createdAt: Date,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

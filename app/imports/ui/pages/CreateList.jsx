@@ -1,11 +1,12 @@
 import React from 'react';
-import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
+import { Vendors, VendorSchema } from '/imports/api/vendor/vendor';
 import { Grid, Segment, Header, Form, Loader } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ListField from 'uniforms-semantic/ListField';
+import NumField from 'uniforms-semantic/NumField';
 import NestField from 'uniforms-semantic/NestField';
 import ListItemField from 'uniforms-semantic/ListItemField';
 import ListDelField from 'uniforms-semantic/ListDelField';
@@ -17,7 +18,7 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 
 /** Renders the Page for adding a document. */
-class AddRecipe extends React.Component {
+class CreateList extends React.Component {
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
@@ -39,9 +40,9 @@ class AddRecipe extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, createdAt } = data;
+    const { ingredients } = data;
     const owner = Meteor.user().username;
-    Recipes.insert({ name, image, description, vegan, glutenFree, dairyFree, ingredients, steps, owner, createdAt }, this.insertCallback);
+    Vendors.insert({ ingredients, owner }, this.insertCallback);
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -61,33 +62,22 @@ class AddRecipe extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center">Add Recipe</Header>
-          <AutoForm ref={(ref) => { this.formRef = ref; }} schema={RecipeSchema} onSubmit={this.submit}>
+          <Header as="h2" textAlign="center">Create Ingredients List</Header>
+          <AutoForm ref={(ref) => { this.formRef = ref; }} schema={VendorSchema} onSubmit={this.submit}>
             <Segment style={formStyle}>
-              <TextField name='name' placeholder='Name'/>
-              <TextField name='image' placeholder='Image'/>
-              <TextField name='description' placeholder='Description'/>
-              <Form.Group>
-                <BoolField name='vegan'/>
-                <BoolField name='glutenFree'/>
-                <BoolField name='dairyFree'/>
-              </Form.Group>
               <ListField name='ingredients'>
                 <ListItemField name='$'>
                   <NestField>
-                    <Form.Group width='equal'>
-                      <TextField name='name' placeholder='Name'/>
-                      <TextField name='measurement' placeholder='Measurement'/>
-                    </Form.Group>
+                      <Form.Group widths='equal'>
+                        <TextField name='name' placeholder='Name'/>
+                        <TextField name='quantity' placeholder='Quantity'/>
+                        <NumField name='price' placeholder='Price'/>
+                        <HiddenField name='createdAt' value={new Date()}/>
+                      </Form.Group>
                   </NestField>
                 </ListItemField>
               </ListField>
               <HiddenField name='owner' value='fakeuser@foo.com'/>
-              <HiddenField name='createdAt' value={new Date()}/>
-              <ListField name='steps'>
-                <ListDelField name='$'/>
-                <TextField name='$' placeholder='Step'/>
-              </ListField>
               <ErrorsField/>
               <SubmitField style={buttonStyle} value='Submit'/>
             </Segment>
@@ -98,15 +88,15 @@ class AddRecipe extends React.Component {
   }
 }
 
-AddRecipe.propTypes = {
-  recipe: PropTypes.array.isRequired,
+CreateList.propTypes = {
+  vendor: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Recipes');
+  const subscription = Meteor.subscribe('Vendors');
   return {
-    recipe: Recipes.find({}).fetch(),
+    vendor: Vendors.find({}).fetch(),
     ready: (subscription.ready()),
   };
-})(AddRecipe);
+})(CreateList);

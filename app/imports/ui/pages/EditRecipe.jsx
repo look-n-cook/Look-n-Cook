@@ -60,8 +60,10 @@ class EditRecipe extends React.Component {
               <ListField name='ingredients'>
                 <ListItemField name='$'>
                   <NestField>
-                    <TextField name='name'/>
-                    <TextField name='measurement'/>
+                    <Form.Group width='equal'>
+                      <TextField name='name'/>
+                      <TextField name='measurement'/>
+                    </Form.Group>
                   </NestField>
                 </ListItemField>
               </ListField>
