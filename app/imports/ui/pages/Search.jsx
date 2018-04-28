@@ -87,7 +87,7 @@ class Search extends React.Component {
     if (this.state.submittedKeyword !== '') {
       const keyword = this.state.submittedKeyword;
       this.recipes = _.filter((this.recipes), function (recipe) {
-        if (recipe.name.match(keyword) || recipe.description.match(keyword)) {
+        if (recipe.name.match(keyword) || recipe.description.match(keyword) || recipe.owner.match(keyword)) {
           return recipe;
         }
         return null;
