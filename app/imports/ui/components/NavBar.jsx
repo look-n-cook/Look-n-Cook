@@ -70,8 +70,8 @@ class NavBar extends React.Component {
           ]) : ''}
 
           {Roles.userIsInRole(Meteor.userId(), 'vendor') ? ([
-            <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/create-list" key='create-list'>
-              Create Ingredients List
+            <Menu.Item position="right" as={NavLink} activeClassName="active" exact to="/vendor-add" key='vendor-add'>
+              Add Ingredient
             </Menu.Item>,
           ]) : ''}
 

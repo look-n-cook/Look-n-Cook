@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 
 /** Renders the Page for adding a document. */
-class CreateList extends React.Component {
+class AddIngredient extends React.Component {
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
@@ -40,9 +40,9 @@ class CreateList extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { ingredients } = data;
+    const { name, quantity, price, createdAt } = data;
     const owner = Meteor.user().username;
-    Vendors.insert({ ingredients, owner }, this.insertCallback);
+    Vendors.insert({ name, quantity, price, owner, createdAt }, this.insertCallback);
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -62,21 +62,15 @@ class CreateList extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center">Create Ingredients List</Header>
+          <Header as="h2" textAlign="center">Add Ingredients</Header>
           <AutoForm ref={(ref) => { this.formRef = ref; }} schema={VendorSchema} onSubmit={this.submit}>
             <Segment style={formStyle}>
-              <ListField name='ingredients'>
-                <ListItemField name='$'>
-                  <NestField>
-                      <Form.Group widths='equal'>
-                        <TextField name='name' placeholder='Name'/>
-                        <TextField name='quantity' placeholder='Quantity'/>
-                        <NumField name='price' placeholder='Price'/>
-                        <HiddenField name='createdAt' value={new Date()}/>
-                      </Form.Group>
-                  </NestField>
-                </ListItemField>
-              </ListField>
+              <Form.Group>
+                <TextField name='name' placeholder='Name'/>
+                <TextField name='quantity' placeholder='Quantity'/>
+                <NumField name='price' placeholder='Price'/>
+              </Form.Group>
+              <HiddenField name='createdAt' value={new Date()}/>
               <HiddenField name='owner' value='fakeuser@foo.com'/>
               <ErrorsField/>
               <SubmitField style={buttonStyle} value='Submit'/>
@@ -88,7 +82,7 @@ class CreateList extends React.Component {
   }
 }
 
-CreateList.propTypes = {
+AddIngredient.propTypes = {
   vendor: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -99,4 +93,4 @@ export default withTracker(() => {
     vendor: Vendors.find({}).fetch(),
     ready: (subscription.ready()),
   };
-})(CreateList);
+})(AddIngredient);

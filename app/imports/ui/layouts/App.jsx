@@ -22,7 +22,9 @@ import ListRecipesAdmin from '../pages/ListRecipesAdmin';
 import ListUsersAdmin from '../pages/ListUsersAdmin';
 import ListVendorsAdmin from '../pages/ListVendorsAdmin';
 import ListIngredientsAdmin from '../pages/ListIngredientsAdmin';
-import CreateList from '../pages/CreateList';
+import AddIngredient from '../pages/AddIngredient';
+import EditIngredient from '../pages/EditIngredient';
+import ListIngredients from '../pages/ListIngredients';
 import Search from '../pages/Search';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -49,7 +51,9 @@ class App extends React.Component {
               <AdminProtectedRoute path="/admin-users" component={ListUsersAdmin}/>
               <AdminProtectedRoute path="/admin-vendors" component={ListVendorsAdmin}/>
               <AdminProtectedRoute path="/admin-ingredients" component={ListIngredientsAdmin}/>
-              <VendorProtectedRoute path="/create-list" component={CreateList}/>
+              <VendorProtectedRoute path="/vendor-add" component={AddIngredient}/>
+              <VendorProtectedRoute path="/vendor-ingredients" component={ListIngredients}/>
+              <VendorProtectedRoute path="/vendor-edit/:_id" component={EditIngredient}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
