@@ -20,7 +20,7 @@ class UserHome extends React.Component {
     const newest = reversed.slice(0, 6);
     return (
       <Container>
-        <Header as="h2" textAlign="center" inverted>User Home Page</Header>
+        <Header as="h2" textAlign="center">User Home Page</Header>
         <Card.Group>
           {newest.map((recipe, index) => <UserHomeRecipes key={index} recipe={recipe} />)}
         </Card.Group>
