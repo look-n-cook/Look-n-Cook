@@ -28,15 +28,18 @@ export default class Vendorsignup extends React.Component {
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
     const { email, password } = this.state;
-    Accounts.createUser({ email, username: email, password }, (err) => {
-      if (err) {
-        this.setState({ error: err.reason });
-      } else {
-        this.setState({ error: '', redirectToReferer: true });
-        Roles.addUsersToRoles(Meteor.userId(), 'vendor');
-        // browserHistory.push('/login');
-      }
-    });
+    Accounts.createUser(
+        { email, username: email, password },
+        (err) => {
+          if (err) {
+            this.setState({ error: err.reason });
+          } else {
+            this.setState({ error: '', redirectToReferer: true });
+            // browserHistory.push('/login');
+          }
+        },
+        'vendor',
+        );
   }
 
   /** Display the signup form. */
@@ -84,7 +87,7 @@ export default class Vendorsignup extends React.Component {
               </Form>
               <Message style={formStyle}>
                 Already have an account? Login <Link to="/signin">here</Link>
-              <br/>
+                <br/>
                 Not a vendor? Students sign up <Link to="/signup">here</Link>
               </Message>
               {this.state.error === '' ? (
