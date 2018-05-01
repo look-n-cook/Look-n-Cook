@@ -17,6 +17,15 @@ class ListRecipesAdmin extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const usernames =  _.uniq(_.map(this.props.recipes, (recipe) => recipe.owner));
+    const users = _.map(
+        (usernames),
+        (username) => _.find(
+            (this.props.users),
+            (user) => (user.emails['0'].address === username),
+        ),
+    );
+
     return (
         <Container>
           <Header as="h2" textAlign="center">List Users</Header>
@@ -28,8 +37,8 @@ class ListRecipesAdmin extends React.Component {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {this.props.users.map((user) => <UserItemAdmin
-                  key={user._id} user={user} recipes={this.props.recipes} />)
+              {users.map((user) => <UserItemAdmin
+                  key={user._id} user={user} recipes={this.props.recipes}/>)
               }
             </Table.Body>
           </Table>
