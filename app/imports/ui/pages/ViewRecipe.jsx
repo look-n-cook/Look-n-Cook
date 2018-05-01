@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Image, List, Container } from 'semantic-ui-react';
+import { Grid, Loader, Header, Image, List, Menu } from 'semantic-ui-react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -44,10 +44,10 @@ class ViewRecipe extends React.Component {
                 </Grid>
                 <Header as="h4" textAlign="center">"{this.props.doc.description}"</Header>
 
-                <Grid>
-                  <Grid.Row centered columns={3}>
-                    {dietArray.map((diet, index) => <Grid.Column><Header as={'h5'} textAlign={'center'} key={index}>{`- ${diet}`}</Header></Grid.Column>)}
-                  </Grid.Row>
+                <Grid textAlign={'center'}>
+                  <Menu compact borderless text textAlign={'center'}>
+                    {dietArray.map((diet, index) => <Menu.Item key={index}>{`- ${diet}`}</Menu.Item>)}
+                  </Menu>
                 </Grid>
 
                 <List bulleted>

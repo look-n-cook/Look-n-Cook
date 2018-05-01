@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Button, Feed, Grid, Container } from 'semantic-ui-react';
+import { Card, Image, Feed, Grid, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 
@@ -9,8 +9,12 @@ class UserHomeRecipes extends React.Component {
     const cardStyle = {
       background: '#F3E2C4',
     };
-    return (
+    const dietArray = [];
+    if (this.props.recipe.vegan === true) { dietArray.push('Vegan'); }
+    if (this.props.recipe.glutenFree === true) { dietArray.push('Gluten Free'); }
+    if (this.props.recipe.dairyFree === true) { dietArray.push('Dairy Free'); }
 
+    return (
         <Card centered style={cardStyle} link>
           <Card.Content>
             <Card.Header>
@@ -23,7 +27,7 @@ class UserHomeRecipes extends React.Component {
             </div>
 
             <Card.Description>
-              <div style={{ marginTop: '375px', marginBottom: '20px' }}>
+              <div style={{ marginTop: '375px', marginBottom: '10px' }}>
                 {this.props.recipe.description}
               </div>
             </Card.Description>
@@ -41,6 +45,13 @@ class UserHomeRecipes extends React.Component {
                 </Card.Meta>
                 <Feed.Date content={this.props.recipe.createdAt.toLocaleDateString('en-US')}/>
               </Grid.Column>
+            </Grid>
+          </Card.Content>
+          <Card.Content extra>
+            <Grid textAlign={'center'}>
+            <Menu compact borderless text textAlign={'center'}>
+                {dietArray.map((diet, index) => <Menu.Item key={index}>{`${diet}`}</Menu.Item>)}
+            </Menu>
             </Grid>
           </Card.Content>
         </Card>
