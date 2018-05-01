@@ -12,6 +12,7 @@ class RecipeItemAdmin extends React.Component {
           <Table.Cell>{
             (_.filter(recipeOwners, (owner) => owner === this.props.user.emails['0'].address)).length
           }</Table.Cell>
+          <Table.Cell>{this.props.user.createdAt.toLocaleDateString('en-US')}</Table.Cell>
         </Table.Row>
     );
   }
