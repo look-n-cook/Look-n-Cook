@@ -17,13 +17,9 @@ class ListRecipesAdmin extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const usernames =  _.uniq(_.map(this.props.recipes, (recipe) => recipe.owner));
-    const users = _.map(
-        (usernames),
-        (username) => _.find(
-            (this.props.users),
-            (user) => (user.emails['0'].address === username),
-        ),
+    const users = _.filter(
+        (this.props.users),
+        (user) => !_.contains((user.roles), 'admin') && !_.contains((user.roles), 'vendor'),
     );
 
     return (
@@ -34,6 +30,7 @@ class ListRecipesAdmin extends React.Component {
               <Table.Row>
                 <Table.HeaderCell>User</Table.HeaderCell>
                 <Table.HeaderCell>Recipes Made</Table.HeaderCell>
+                <Table.HeaderCell>Joined On</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

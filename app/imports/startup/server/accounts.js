@@ -32,7 +32,7 @@ if (Meteor.users.find().count() === 0) {
 Meteor.publish('AccountsAdmin', function () {
   const self = this;
   const handle = Meteor.users.find({}, {
-    fields: { emails: 1, profile: 1 },
+    fields: { emails: 1, createdAt: 1, roles: 1 },
   }).observeChanges({
     added: function (id, fields) {
       self.added('Accounts', id, fields);
