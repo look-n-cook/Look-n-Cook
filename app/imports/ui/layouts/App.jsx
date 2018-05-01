@@ -15,6 +15,7 @@ import EditRecipe from '../pages/EditRecipe';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
+import Vendorsignup from '../pages/Vendorsignup';
 import Signout from '../pages/Signout';
 import ViewRecipe from '../pages/ViewRecipe';
 import Separator from '../components/Separator';
@@ -39,6 +40,7 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
+              <Route path="/vendorsignup" component={Vendorsignup}/>
               <ProtectedRoute exact path="/" component={UserHome}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/home" component={UserHome}/>

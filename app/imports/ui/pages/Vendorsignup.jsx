@@ -3,11 +3,12 @@ import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 import PropTypes from 'prop-types';
+import { Roles } from 'meteor/alanning:roles';
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
  */
-export default class Signup extends React.Component {
+export default class Vendorsignup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
@@ -26,13 +27,14 @@ export default class Signup extends React.Component {
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
     const { email, password } = this.state;
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    const id = Accounts.createUser({ email, username: email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
         // browserHistory.push('/login');
       }
     });
+    console.log(Roles.addUsersToRoles(id, ['vendor']));
   }
 
   /** Display the signup form. */
@@ -53,7 +55,7 @@ export default class Signup extends React.Component {
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
               <Header as="h2" textAlign="center">
-                Register Your Student Account
+                Register Your Vendor Account
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment style={formStyle} stacked>
@@ -81,7 +83,7 @@ export default class Signup extends React.Component {
               <Message style={formStyle}>
                 Already have an account? Login <Link to="/signin">here</Link>
               <br/>
-                Not a student? Vendors sign up <Link to="/vendorsignup">here</Link>
+                Not a vendor? Students sign up <Link to="/signup">here</Link>
               </Message>
               {this.state.error === '' ? (
                   ''
@@ -100,6 +102,6 @@ export default class Signup extends React.Component {
 }
 
 /** Ensure that the React Router location object is available in case we need to redirect. */
-Signup.propTypes = {
+Vendorsignup.propTypes = {
   location: PropTypes.object,
 };
