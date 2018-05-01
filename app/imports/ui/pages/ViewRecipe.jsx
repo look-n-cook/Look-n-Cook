@@ -22,6 +22,11 @@ class ViewRecipe extends React.Component {
       borderTopLeftRadius: '20px',
       borderTopRightRadius: '20px',
     };
+    const dietArray = [];
+    if (this.props.doc.vegan === true) { dietArray.push('Vegan'); }
+    if (this.props.doc.glutenFree === true) { dietArray.push('Gluten Free'); }
+    if (this.props.doc.dairyFree === true) { dietArray.push('Dairy Free'); }
+
     return (
           <Grid container divided={'vertically'} padded style={cardStyle}>
             <Grid.Row centered columns={2} padded>
@@ -37,7 +42,14 @@ class ViewRecipe extends React.Component {
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
-                <Header as="h3" textAlign="center">"{this.props.doc.description}"</Header>
+                <Header as="h4" textAlign="center">"{this.props.doc.description}"</Header>
+
+                <Grid>
+                  <Grid.Row centered columns={3}>
+                    {dietArray.map((diet, index) => <Grid.Column><Header as={'h5'} textAlign={'center'} key={index}>{`- ${diet}`}</Header></Grid.Column>)}
+                  </Grid.Row>
+                </Grid>
+
                 <List bulleted>
                   <List.Header as={'h3'}>Ingredients</List.Header>
                   {this.props.doc.ingredients.map((ing, index) => <List.Item
