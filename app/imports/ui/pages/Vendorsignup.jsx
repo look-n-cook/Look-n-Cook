@@ -4,6 +4,7 @@ import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-rea
 import { Accounts } from 'meteor/accounts-base';
 import PropTypes from 'prop-types';
 import { Roles } from 'meteor/alanning:roles';
+import { Meteor } from 'meteor/meteor';
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
@@ -12,7 +13,7 @@ export default class Vendorsignup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '' };
+    this.state = { email: '', password: '', error: '', redirectToReferer: false };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,14 +28,15 @@ export default class Vendorsignup extends React.Component {
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
     const { email, password } = this.state;
-    const id = Accounts.createUser({ email, username: email, password }, (err) => {
+    Accounts.createUser({ email, username: email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
+        this.setState({ error: '', redirectToReferer: true });
+        Roles.addUsersToRoles(Meteor.userId(), 'vendor');
         // browserHistory.push('/login');
       }
     });
-    console.log(Roles.addUsersToRoles(id, ['vendor']));
   }
 
   /** Display the signup form. */

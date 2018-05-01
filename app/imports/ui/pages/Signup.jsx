@@ -11,7 +11,7 @@ export default class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '' };
+    this.state = { email: '', password: '', error: '', redirectToReferer: false };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,6 +30,7 @@ export default class Signup extends React.Component {
       if (err) {
         this.setState({ error: err.reason });
       } else {
+        this.setState({ error: '', redirectToReferer: true });
         // browserHistory.push('/login');
       }
     });
