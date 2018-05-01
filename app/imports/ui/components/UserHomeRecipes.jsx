@@ -1,23 +1,25 @@
 import React from 'react';
-import { Card, Image, Button, Feed, Grid } from 'semantic-ui-react';
+import { Card, Image, Button, Feed, Grid, Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class UserHomeRecipes extends React.Component {
-
   render() {
     const cardStyle = {
       background: '#F3E2C4',
     };
     return (
-        <Card centered style={cardStyle}>
+
+        <Card centered style={cardStyle} link>
           <Card.Content>
             <Card.Header>
               {this.props.recipe.name}
             </Card.Header>
             <div style={{ marginTop: '10px' }}>
-              <Image floated='center' height='350px' width='300px' src={this.props.recipe.image}/>
+              <Link to={`/recipe/${this.props.recipe._id}`}>
+                <Image floated='center' height='350px' width='300px' src={this.props.recipe.image}/>
+              </Link>
             </div>
 
             <Card.Description>
@@ -41,10 +43,8 @@ class UserHomeRecipes extends React.Component {
               </Grid.Column>
             </Grid>
           </Card.Content>
-          <Card.Content extra textAlign={'center'}>
-            <Link to={`/recipe/${this.props.recipe._id}`}>View Recipe</Link>
-          </Card.Content>
         </Card>
+
     );
   }
 }

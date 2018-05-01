@@ -17,6 +17,11 @@ class ListRecipesAdmin extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const users = _.filter(
+        (this.props.users),
+        (user) => !_.contains((user.roles), 'admin') && !_.contains((user.roles), 'vendor'),
+    );
+
     return (
         <Container>
           <Header as="h2" textAlign="center">List Users</Header>
@@ -25,11 +30,12 @@ class ListRecipesAdmin extends React.Component {
               <Table.Row>
                 <Table.HeaderCell>User</Table.HeaderCell>
                 <Table.HeaderCell>Recipes Made</Table.HeaderCell>
+                <Table.HeaderCell>Joined On</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {this.props.users.map((user) => <UserItemAdmin
-                  key={user._id} user={user} recipes={this.props.recipes} />)
+              {users.map((user) => <UserItemAdmin
+                  key={user._id} user={user} recipes={this.props.recipes}/>)
               }
             </Table.Body>
           </Table>
