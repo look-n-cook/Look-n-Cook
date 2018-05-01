@@ -11,6 +11,11 @@
       "role": "vendor"
     },
     {
+      "email": "Foodland@foodland.com",
+      "password": "changeme",
+      "role": "vendor"
+    },
+    {
       "email": "john@foo.com",
       "password": "changeme"
     }
