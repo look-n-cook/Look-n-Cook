@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Vendors } from '../../api/vendor/vendor.js';
+import { Roles } from 'meteor/alanning:roles';
+import { Accounts } from 'meteor/accounts-base';
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Vendors', function publish() {
@@ -9,3 +11,11 @@ Meteor.publish('Vendors', function publish() {
   }
   return this.ready();
 });
+
+Meteor.methods({
+  createVendor: function (userData) {
+    const id = Accounts.createUser(userData);
+    Roles.addUsersToRoles(id, ['vendor']);
+  },
+});
+

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
-import { Accounts } from 'meteor/accounts-base';
 import PropTypes from 'prop-types';
-import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 
 /**
@@ -24,22 +22,17 @@ export default class Vendorsignup extends React.Component {
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
-
-  /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
     const { email, password } = this.state;
-    Accounts.createUser(
-        { email, username: email, password },
-        (err) => {
-          if (err) {
-            this.setState({ error: err.reason });
-          } else {
-            this.setState({ error: '', redirectToReferer: true });
-            // browserHistory.push('/login');
-          }
-        },
-        'vendor',
-        );
+    const userData = { email, username: email, password };
+    Meteor.call('createVendor', userData, (err) => {
+      if (err) {
+        this.setState({ error: err.reason });
+      } else {
+        this.setState({ error: '', redirectToReferer: true });
+        // browserHistory.push('/login');
+      }
+    });
   }
 
   /** Display the signup form. */
@@ -87,7 +80,7 @@ export default class Vendorsignup extends React.Component {
               </Form>
               <Message style={formStyle}>
                 Already have an account? Login <Link to="/signin">here</Link>
-                <br/>
+              <br/>
                 Not a vendor? Students sign up <Link to="/signup">here</Link>
               </Message>
               {this.state.error === '' ? (
