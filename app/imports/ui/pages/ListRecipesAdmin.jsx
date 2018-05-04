@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import { Recipes } from '/imports/api/recipe/recipe';
 import RecipeItemAdmin from '/imports/ui/components/RecipeItemAdmin';
-import StuffItemAdmin from '/imports/ui/components/StuffItemAdmin';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
