@@ -5,7 +5,6 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Vendors } from '../../api/vendor/vendor';
-import { ViewRecipeIngredients } from '/imports/ui/components/ViewRecipeIngredients';
 
 /** Renders the Page for editing a single document. */
 class ViewRecipe extends React.Component {
