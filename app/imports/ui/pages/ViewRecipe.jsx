@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Image, List, Menu, Dropdown } from 'semantic-ui-react';
+import { Grid, Loader, Header, Image, List, Menu, Dropdown, Feed } from 'semantic-ui-react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Reviews } from '/imports/api/review/review';
 import Review from '/imports/ui/components/Review';
