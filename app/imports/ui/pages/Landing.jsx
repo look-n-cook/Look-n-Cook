@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Grid,
-  Header,
   Icon,
 } from 'semantic-ui-react';
 

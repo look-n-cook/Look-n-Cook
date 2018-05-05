@@ -8,7 +8,6 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Profile from '../pages/Profile';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
 import UserHome from '../pages/UserHome';
 import AddRecipe from '../pages/AddRecipe';
 import EditRecipe from '../pages/EditRecipe';
@@ -48,7 +47,6 @@ class App extends React.Component {
               <ProtectedRoute path="/search" component={Search}/>
               <ProtectedRoute path="/edit/:_id" component={EditRecipe}/>
               <ProtectedRoute path="/recipe/:_id" component={ViewRecipe}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/admin-recipes" component={ListRecipesAdmin}/>
               <AdminProtectedRoute path="/admin-users" component={ListUsersAdmin}/>
               <AdminProtectedRoute path="/admin-vendors" component={ListVendorsAdmin}/>
