@@ -26,7 +26,6 @@ class ListIngredientsAdmin extends React.Component {
                 <Table.HeaderCell>Vendor</Table.HeaderCell>
                 <Table.HeaderCell>Price</Table.HeaderCell>
                 <Table.HeaderCell>Quantity</Table.HeaderCell>
-                <Table.HeaderCell>Weight</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -48,7 +47,7 @@ ListIngredientsAdmin.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Vendors');
+  const subscription = Meteor.subscribe('VendorList');
   return {
     ingredients: Vendors.find({}).fetch(),
     ready: subscription.ready(),
