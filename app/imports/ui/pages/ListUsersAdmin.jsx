@@ -25,7 +25,7 @@ class ListUsersAdmin extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Users</Header>
-          <Table celled>
+          <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>User</Table.HeaderCell>

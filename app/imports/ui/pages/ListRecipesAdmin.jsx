@@ -19,12 +19,13 @@ class ListRecipesAdmin extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Recipes</Header>
-          <Table celled>
+          <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Recipe</Table.HeaderCell>
                 <Table.HeaderCell>Owner</Table.HeaderCell>
                 <Table.HeaderCell>Created</Table.HeaderCell>
+                <Table.HeaderCell>Delete</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

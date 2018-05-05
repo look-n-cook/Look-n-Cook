@@ -12,7 +12,6 @@ class IngredientItem extends React.Component {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.deleteCallback = this.deleteCallback.bind(this);
-    this.formRef = null;
   }
   /** Notify the user of the results of the submit. If successful, clear the form. */
   deleteCallback(error) {
@@ -42,7 +41,7 @@ class IngredientItem extends React.Component {
           <Table.Cell>
             <Button.Group basic size='small'>
               <Button icon='edit' as={NavLink} exact to={`/vendor-edit/${this.props.vendor._id}`}/>
-              <Button icon='remove' onClick={this.onClick} />
+              <Button icon='trash outline' onClick={this.onClick} />
             </Button.Group>
           </Table.Cell>
         </Table.Row>

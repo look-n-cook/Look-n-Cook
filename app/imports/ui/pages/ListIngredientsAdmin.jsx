@@ -19,13 +19,14 @@ class ListIngredientsAdmin extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Ingredients</Header>
-          <Table celled>
+          <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Vendor</Table.HeaderCell>
                 <Table.HeaderCell>Price</Table.HeaderCell>
                 <Table.HeaderCell>Quantity</Table.HeaderCell>
+                <Table.HeaderCell>Delete</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

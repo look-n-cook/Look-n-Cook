@@ -28,7 +28,7 @@ class ListIngredientsAdmin extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Users</Header>
-          <Table celled>
+          <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Vendor</Table.HeaderCell>

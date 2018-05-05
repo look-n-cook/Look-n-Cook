@@ -19,16 +19,15 @@ class ListIngredients extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Ingredients</Header>
-          <Table unstackable>
+          <Table>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Quantity</Table.HeaderCell>
                 <Table.HeaderCell>Price</Table.HeaderCell>
-                <Table.HeaderCell>Owner</Table.HeaderCell>
+                <Table.HeaderCell>Vendor</Table.HeaderCell>
                 <Table.HeaderCell>Date Posted</Table.HeaderCell>
-                <Table.HeaderCell> </Table.HeaderCell>
-                <Table.HeaderCell> </Table.HeaderCell>
+                <Table.HeaderCell>Edit/Delete</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
