@@ -8,6 +8,7 @@ import {
   Dropdown,
   Header,
   Icon,
+  Image,
 } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
@@ -18,6 +19,10 @@ class NavBar extends React.Component {
       margin: '0',
       height: '70px',
       width: '100%',
+    };
+    const logoStyle = {
+      margin: '0',
+      height: '40px',
     };
     const menuStyle = {
       marginTop: '0',
@@ -30,11 +35,11 @@ class NavBar extends React.Component {
         <Menu style={menuStyle} attached="top" borderless inverted>
           {this.props.currentUser === '' ? (
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
-              <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+              <Image src='/images/logo1.png' style={logoStyle}/>
             </Menu.Item>
           ) : (
             <Menu.Item as={NavLink} activeClassName="" exact to="/home">
-              <Header inverted as='h1'>{"Look 'n' Cook"}</Header>
+              <Image src='/images/logo1.png' style={logoStyle}/>
             </Menu.Item>
           )}
 
