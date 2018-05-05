@@ -2,19 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Recipes } from '../../api/recipe/recipe.js';
 
-/** Initialize the database with a default data document. */
-function addData(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
-  Recipes.insert(data);
-}
-/** Initialize the collection if empty. */
-if (Recipes.find().count() === 0) {
-  if (Meteor.settings.defaultRecipes) {
-    console.log('Creating default data.');
-    Meteor.settings.defaultRecipes.map(data => addData(data));
-  }
-}
-
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Recipes', function publish() {
   if (this.userId) {
