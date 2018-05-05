@@ -9,7 +9,7 @@ class IngredientItemAdmin extends React.Component {
         <Table.Row>
           <Table.Cell>{this.props.ingredient.name}</Table.Cell>
           <Table.Cell>{this.props.ingredient.owner}</Table.Cell>
-          <Table.Cell>{this.props.ingredient.price}</Table.Cell>
+          <Table.Cell>{`$${this.props.ingredient.price}`}</Table.Cell>
           <Table.Cell>{this.props.ingredient.quantity}</Table.Cell>
         </Table.Row>
     );

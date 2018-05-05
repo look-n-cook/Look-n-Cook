@@ -8,7 +8,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListRecipesAdmin extends React.Component {
+class ListUsersAdmin extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -45,7 +45,7 @@ class ListRecipesAdmin extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-ListRecipesAdmin.propTypes = {
+ListUsersAdmin.propTypes = {
   users: PropTypes.array.isRequired,
   recipes: PropTypes.array.isRequired,
   readyRecipes: PropTypes.bool.isRequired,
@@ -63,4 +63,4 @@ export default withTracker(() => {
     readyRecipes: subscriptionRecipes.ready(),
     readyAccounts: subscriptionAccounts.ready(),
   };
-})(ListRecipesAdmin);
+})(ListUsersAdmin);
