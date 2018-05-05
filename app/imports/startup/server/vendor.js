@@ -12,6 +12,10 @@ Meteor.publish('Vendors', function publish() {
   return this.ready();
 });
 
+Meteor.publish('VendorList', function publish() {
+  return Vendors.find();
+});
+
 Meteor.methods({
   createVendor: function (userData) {
     const id = Accounts.createUser(userData);

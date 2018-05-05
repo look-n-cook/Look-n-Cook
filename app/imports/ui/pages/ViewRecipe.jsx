@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Image, List, Menu, Dropdown, Feed } from 'semantic-ui-react';
+import { Grid, Loader, Header, Image, List, Menu, Dropdown, Feed, Table } from 'semantic-ui-react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Reviews } from '/imports/api/review/review';
 import Review from '/imports/ui/components/Review';
@@ -71,6 +71,7 @@ class ViewRecipe extends React.Component {
                   {this.props.doc.ingredients.map((ing, index) => <List.Item
                       key={index}>{ing.measurement} {ing.name}</List.Item>)}
                 </List>
+
                 <List ordered>
                   <List.Header as={'h3'}>Directions</List.Header>
                   {this.props.doc.steps.map((step, index) => <List.Item
@@ -81,6 +82,33 @@ class ViewRecipe extends React.Component {
                 <Image centered height={'500px'} src={this.props.doc.image}/>
               </Grid.Column>
             </Grid.Row>
+
+            <Grid.Row>
+              <Grid.Column>
+              <Table celled textAlign={'center'}>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>Vendor</Table.HeaderCell>
+                    <Table.HeaderCell>Quantity</Table.HeaderCell>
+                    <Table.HeaderCell>Price</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+              </Table>
+                {this.props.vendor.map(function (ven, index) {
+                  return(
+                      <Table.Body>
+                    <Table.Row key={index}>
+                      <Table.Cell>{ven.owner}</Table.Cell>
+                      <Table.Cell>{ven.quantity}</Table.Cell>
+                      <Table.Cell>{ven.price}</Table.Cell>
+                    </Table.Row>
+                      </Table.Body>
+                  );
+                  })}
+
+              </Grid.Column>
+            </Grid.Row>
+
             <Grid.Row>
               <Grid.Column>
                 <Header as="h2" textAlign="left">
@@ -100,6 +128,7 @@ class ViewRecipe extends React.Component {
 /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
 ViewRecipe.propTypes = {
   reviews: PropTypes.array.isRequired,
+  vendor: PropTypes.object,
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -111,7 +140,7 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Home');
-  const vendorsSub = Meteor.subscribe('Vendors');
+  const vendorsSub = Meteor.subscribe('VendorList');
   const subscription2 = Meteor.subscribe('Reviews');
   return {
     vendor: Vendors.find({}).fetch(),
