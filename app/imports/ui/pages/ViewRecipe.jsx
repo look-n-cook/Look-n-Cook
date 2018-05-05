@@ -93,7 +93,6 @@ class ViewRecipe extends React.Component {
                     <Table.HeaderCell>Price</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
-              </Table>
                 {this.props.vendor.map(function (ven, index) {
                   return(
                       <Table.Body>
@@ -105,7 +104,7 @@ class ViewRecipe extends React.Component {
                       </Table.Body>
                   );
                   })}
-
+              </Table>
               </Grid.Column>
             </Grid.Row>
 
