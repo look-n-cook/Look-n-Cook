@@ -3,7 +3,7 @@ import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 /** Renders a single row in the List Stuff (Admin) table. See pages/ListStuffAdmin.jsx. */
-class RecipeItemAdmin extends React.Component {
+class UserItemAdmin extends React.Component {
   render() {
     const recipeOwners = _.map(this.props.recipes, (recipe) => recipe.owner);
     return (
@@ -19,9 +19,9 @@ class RecipeItemAdmin extends React.Component {
 }
 
 /** Require a document to be passed to this component. */
-RecipeItemAdmin.propTypes = {
+UserItemAdmin.propTypes = {
   user: PropTypes.object.isRequired,
   recipes: PropTypes.array.isRequired,
 };
 
-export default RecipeItemAdmin;
+export default UserItemAdmin;
