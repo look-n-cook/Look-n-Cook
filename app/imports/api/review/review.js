@@ -11,7 +11,7 @@ const ReviewSchema = new SimpleSchema({
   recipeId: String,
   rating: {
     type: String,
-    allowedValues: [' ', '♥', '♥♥', '♥♥♥', '♥♥♥♥', '♥♥♥♥♥'],
+    allowedValues: [' ', '★', '★★', '★★★', '★★★★', '★★★★★'],
     defaultValue: ' ',
   },
   owner: String,

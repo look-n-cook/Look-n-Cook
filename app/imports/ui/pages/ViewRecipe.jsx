@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Image, List, Menu, Feed } from 'semantic-ui-react';
+import { Grid, Loader, Header, Image, List, Menu, Segment, Button } from 'semantic-ui-react';
 import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
 import { Reviews } from '/imports/api/review/review';
 import Review from '/imports/ui/components/Review';
@@ -73,9 +73,7 @@ class ViewRecipe extends React.Component {
                 <Header as="h2" textAlign="left">
                   Reviews
                 </Header>
-                <Feed>
                   {this.props.reviews.map((review, index) => <Review key={index} review={review}/>)}
-                </Feed>
                 <AddReview owner={Meteor.user().username} recipeId={this.props.doc._id}/>
               </Grid.Column>
             </Grid.Row>

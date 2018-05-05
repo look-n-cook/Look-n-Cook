@@ -9,7 +9,7 @@ import ErrorsField from 'uniforms-semantic/ErrorsField';
 import SelectField from 'uniforms-semantic/SelectField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
-
+import { Meteor } from 'meteor/meteor';
 /** Renders the Page for adding a document. */
 class AddReview extends React.Component {
 
@@ -40,16 +40,22 @@ class AddReview extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    const reviewStyle = {
+      background: '#CAB494',
+    };
+    const buttonStyle = {
+      background: '#DACFB3',
+    };
     return (
       <AutoForm ref={(ref) => { this.formRef = ref; }} schema={ReviewSchema} onSubmit={this.submit}>
-        <Segment>
+        <Segment style={reviewStyle}>
           <SelectField name='rating'/>
           <TextField label="Add a review" name='review'/>
-          <SubmitField value='Submit'/>
           <ErrorsField/>
           <HiddenField name='owner' value={this.props.owner}/>
           <HiddenField name='recipeId' value={this.props.recipeId}/>
           <HiddenField name='createdAt' value={new Date()}/>
+          <SubmitField value='Submit' style={buttonStyle}/>
         </Segment>
       </AutoForm>
     );
@@ -59,6 +65,6 @@ class AddReview extends React.Component {
 AddReview.propTypes = {
   owner: PropTypes.string.isRequired,
   recipeId: PropTypes.string.isRequired,
-}
+};
 
 export default AddReview;
