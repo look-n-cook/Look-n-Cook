@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Feed, Grid, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink, Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class UserHomeRecipes extends React.Component {
