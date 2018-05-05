@@ -1,13 +1,14 @@
 import React from 'react';
-import { Grid, Loader, Header, Image, List, Menu, Dropdown, Feed, Table } from 'semantic-ui-react';
-import { Recipes, RecipeSchema } from '/imports/api/recipe/recipe';
+import { Grid, Loader, Header, Image, List, Menu, Feed, Table } from 'semantic-ui-react';
+import { Recipes } from '/imports/api/recipe/recipe';
 import { Reviews } from '/imports/api/review/review';
 import Review from '/imports/ui/components/Review';
+import RecipeListVendor from '/imports/ui/components/RecipeListVendor';
 import AddReview from '/imports/ui/components/AddReview';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Vendors } from '../../api/vendor/vendor';
+import { Vendors } from '/imports/api/vendor/vendor';
 
 /** Renders the Page for editing a single document. */
 class ViewRecipe extends React.Component {
@@ -26,6 +27,15 @@ class ViewRecipe extends React.Component {
       borderTopLeftRadius: '20px',
       borderTopRightRadius: '20px',
     };
+
+    const vendorStyle = {
+      background: '#CAB494',
+    };
+
+    const tableStyle = {
+      background: '#edd6af',
+    };
+
     const dietArray = [];
     if (this.props.doc.vegan === true) {
       dietArray.push('Vegan');
@@ -37,12 +47,18 @@ class ViewRecipe extends React.Component {
       dietArray.push('Dairy Free');
     }
 
-    const ingArray = [];
-    this.props.doc.ingredients.map((ing) => ingArray.push(ing));
-    const ingVendors = [];
+    const ingArray = _.map(
+        (this.props.doc.ingredients),
+        (ing) => (ing),
+    );
+
+    console.log('ViewRecipe{');
+    console.log(this.props.doc.ingredients);
+    console.log(ingArray);
+    console.log('}');
 
     return (
-        <Grid container divided={'vertically'} padded style={cardStyle}>
+        <Grid container divided={'vertically'} style={cardStyle}>
           <Grid.Row centered columns={2} padded>
             <Grid.Column>
               <Header as="h1" textAlign="center">{this.props.doc.name}</Header>
@@ -64,47 +80,42 @@ class ViewRecipe extends React.Component {
                   {dietArray.map((diet, index) => <Menu.Item key={index}>{`- ${diet}`}</Menu.Item>)}
                 </Menu>
               </Grid>
-              {console.log(ingArray)}
 
-                <List bulleted>
-                  <List.Header as={'h3'}>Ingredients</List.Header>
-                  {this.props.doc.ingredients.map((ing, index) => <List.Item
-                      key={index}>{ing.measurement} {ing.name}</List.Item>)}
-                </List>
+              <List bulleted>
+                <List.Header as={'h3'}>Ingredients</List.Header>
+                {this.props.doc.ingredients.map((ing, index) => <List.Item
+                    key={index}>{ing.measurement} {ing.name}</List.Item>)}
+              </List>
 
-                <List ordered>
-                  <List.Header as={'h3'}>Directions</List.Header>
-                  {this.props.doc.steps.map((step, index) => <List.Item
-                      key={index}>{step}</List.Item>)}
-                </List>
-              </Grid.Column>
-              <Grid.Column>
-                <Image centered height={'500px'} src={this.props.doc.image}/>
-              </Grid.Column>
-            </Grid.Row>
+              <List ordered>
+                <List.Header as={'h3'}>Directions</List.Header>
+                {this.props.doc.steps.map((step, index) => <List.Item
+                    key={index}>{step}</List.Item>)}
+              </List>
+            </Grid.Column>
+            <Grid.Column>
+              <Image centered height={'500px'} src={this.props.doc.image}/>
+            </Grid.Column>
+          </Grid.Row>
 
-            <Grid.Row>
-              <Grid.Column>
-              <Table celled textAlign={'center'}>
-                <Table.Header>
+          <Grid.Row>
+            <Grid.Column>
+              <Table style={tableStyle}>
+                <Table.Header style={vendorStyle}>
                   <Table.Row>
-                    <Table.HeaderCell>Vendor</Table.HeaderCell>
-                    <Table.HeaderCell>Quantity</Table.HeaderCell>
-                    <Table.HeaderCell>Price</Table.HeaderCell>
+                    <Table.HeaderCell style={vendorStyle}></Table.HeaderCell>
+                    <Table.HeaderCell style={vendorStyle}>Vendor</Table.HeaderCell>
+                    <Table.HeaderCell style={vendorStyle}>Quantity</Table.HeaderCell>
+                    <Table.HeaderCell style={vendorStyle}>Price</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
+                <Table.Body>
+                  {_.map(
+                      (ingArray),
+                      (ing, index) => <RecipeListVendor key={index} ingredient={ing.name} vendor={this.props.vendors}/>,
+                  )}
+                </Table.Body>
               </Table>
-                {this.props.vendor.map(function (ven, index) {
-                  return (
-                      <Table.Body>
-                    <Table.Row key={index}>
-                      <Table.Cell>{ven.owner}</Table.Cell>
-                      <Table.Cell>{ven.quantity}</Table.Cell>
-                      <Table.Cell>{ven.price}</Table.Cell>
-                    </Table.Row>
-                      </Table.Body>
-                  );
-                  })}
               </Grid.Column>
             </Grid.Row>
 
@@ -124,8 +135,8 @@ class ViewRecipe extends React.Component {
 
 /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
 ViewRecipe.propTypes = {
+  vendors: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  vendor: PropTypes.object,
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -137,12 +148,12 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Home');
-  const vendorsSub = Meteor.subscribe('VendorList');
   const subscription2 = Meteor.subscribe('Reviews');
+  const subscription3 = Meteor.subscribe('VendorList');
   return {
-    vendor: Vendors.find({}).fetch(),
+    vendors: Vendors.find({}).fetch(),
     reviews: Reviews.find({ recipeId: documentId }).fetch(),
-    doc: Recipes.findOne(documentId),
-    ready: subscription.ready() && subscription2.ready() && vendorsSub.ready(),
+    doc: Recipes.findOne({ _id: documentId }),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(ViewRecipe);
