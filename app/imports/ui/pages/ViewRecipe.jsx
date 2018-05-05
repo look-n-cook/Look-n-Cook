@@ -95,7 +95,7 @@ class ViewRecipe extends React.Component {
                 </Table.Header>
               </Table>
                 {this.props.vendor.map(function (ven, index) {
-                  return(
+                  return (
                       <Table.Body>
                     <Table.Row key={index}>
                       <Table.Cell>{ven.owner}</Table.Cell>
@@ -105,7 +105,6 @@ class ViewRecipe extends React.Component {
                       </Table.Body>
                   );
                   })}
-
               </Grid.Column>
             </Grid.Row>
 
@@ -114,9 +113,7 @@ class ViewRecipe extends React.Component {
                 <Header as="h2" textAlign="left">
                   Reviews
                 </Header>
-                <Feed>
                   {this.props.reviews.map((review, index) => <Review key={index} review={review}/>)}
-                </Feed>
                 <AddReview owner={Meteor.user().username} recipeId={this.props.doc._id}/>
               </Grid.Column>
             </Grid.Row>
